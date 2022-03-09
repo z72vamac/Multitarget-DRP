@@ -1,0 +1,69 @@
+Associate Editor
+Comments to the Author:
+Both reviewers are fairly positive with respect to the studied problem. However, both recommend major revision. I believe that the authors should thoroughly answer all points raised be the reviewers.  
+Reviewer 1 has some serious comments regarding the notation and the proposed valid inequalities that should be addressed. 
+The paper has to be self contained. Thus, as mentioned by reviewer 1, the XPPN must be explained. I also agree that other experiments should be performed, and that comparing CPLEX with Guroubi is not needed. Also, the gap between the solution provided by the matheuristic and the best known solution should be reported.
+
+
+
+Referee(s)' Comments to Author:
+
+Referee: 1
+
+Comments to the Author
+In this manuscript, the authors present a problem in which a mothership vehicle that moves on a 2-dimensional continuous space and a drone with limited endurance must coordinate in order to visit some points or traverse several polygonal chains while minimizing the weighted sum of the distance traveled by both vehicles. They propose a formulation and a matheuristic procedure and report the results obtained in the experiments run on randomly generated instances.
+
+I find the problem addressed here very interesting, and there seems to be a lot of work done by the authors on this issue. However, I think the paper needs to be thoroughly revised, since there are some inconsistencies and it is hard to follow:
+
+- The introduction seems to finish on line 26 of page 2, but then it goes on by repeating much of the content previously described. Actually, the whole part from line 27 of page 2 to the end of section 1 is almost a word-by-word copy of a previous work by the same authors. My guess is that the authors pasted some parts of this previous work in the document in order to serve as guidance for the writing of the new one and then forgot to remove it, or maybe they sent an old work-in-progress version of the paper.
+- In the definition of the problem, it is assumed that the mothership can move freely in the continuous space. Is this a realistic assumption? Are there real-life situations where it makes sense to assume this?
+- The notation used throughout the paper is sometimes confusing and makes it difficult to follow. I know that part of this difficulty is inherent to the complexity of the problem itself, but some choices in the notation add to this confusion. For example, letter R is sometimes used to represent entry points in the targets, while in other situations it represents the point where the mothership retrieves the drone. The same happens with letter L. The authors should try to improve the notation and the description of the meaning of parameters and variables, trying to be consistent with the terminology used (sometimes it is not clear what a launching/retrieval/rendezvous/entry/exit point is). Also, please introduce tables 2 and 3 should be introduced in the text before starting to write inequalities (P-C).
+- In line 30 of page 8, it is said that the shortest subtour is chosen in order to add the corresponding violated SEC inequality. Why only the shortest one and not all of them?
+- On page 9, the difference between visiting a percentage of each polygonal chain or of each target is discussed. I think this discussion should be moved to the part where the problem is defined.
+- In section 2.1 it is said that "this does not imply that the tandem must reach at a rendezvous location at the same time: the base vehicle may wait for the drone at the rendezvous location". This means that the time used by the mothership to get from the launching point to the rendezvous location must be less or equal than the time taken by the drone to perform the operation, which seems to be a reasonable assumption. But on page 9, it is said that “the time spent by the drone to do the operation o is less than or equal to the time that the mothership needs to move from the launching point to the retrieving point during this operation”, which is what inequality (DCW) expresses. If I understand it right, this would mean exactly the opposite, that is, the drone arrives at the retrieving point before the mothership does. One of them must be wrong, which one is it? According to which one have the computational experiments been carried out?
+- In inequalities (7), the parameter \alpha^t is used for targets, but this had previously been defined only as \alpha^p for polygonal chains. Please unify the notation.
+- On page 13, it is said that “the mothership does not need to perform |O| different operations”. This seems to be a contradiction, since O is the set of operations. Maybe the authors mean |T| here?
+- Please explain the sentence “However, it is sufficient to find minimal subsets by monotonicity” on page 13.
+- I think some inequalities on page 14 are wrong. The second inequality of the first pair should be >=, and the same for the second pair.
+- At the beginning of section 4, the authors say that “the basic idea of the algorithm is to associate each target to one operation by solving a crossing postman problem with neighbors (XPPN)”. Please explain briefly what the XPPN is and how is this problem solved (which type of algorithm it is used).
+- When the solutions obtained by the two versions of the matheuristic algorithm in the example are compared, it is said that the sum of the weighted distances in the solution of the refined version is worse. However, judging from the illustration in Figure 4, I would say that both the distance traveled by the mothership and the drone are shorter in the refined version. How is this possible?
+- In the experiments, the authors generate two types of instances: instances where the targets are vertices and those in which the targets are polygonal chains. Why not generating also instances with both points and polygonal chains, since the formulation is valid for these situations?
+- Please specify how the gap is calculated in the computational results.
+- A lot of space is devoted to comparing the results obtained with Cplex and Gurobi. I do not see the point of such comparison, since I do not think this is a major point of this work. I think would have been enough to mention that both solvers have been tried and Cplex obtains the best results, and then report only the results with Cplex.
+- The running time of the formulation reported in the tables, is it with or without the initial solution? Actually, I think both times should be reported, with and without initial solution. Also the gap between the solution provided by the matheuristic and the best known lower bound should be given in order to get a better idea of the performance of the matheuristic.
+
+
+Referee: 2
+
+Comments to the Author
+General Comments
+
+The manuscript addresses a problem of coordinating a mothership and drones and extends a recent work by the same authors. The mothership is assumed to move in a continuous space and it is considered that the drone is able to traverse graphs (maybe only partially), instead of more traditional versions that visit single points only.
+A weighted total distance traveled by the mothership and the drones is minimized.
+
+The work starts with a description of the problem and the presentation of a mixed integer linear programming formulation, assuming that the launch and retrieving stages of the drone are not necessarily the same.
+An initial formulation contains bilinear terms, which are linearized by means of big-M constraints.
+The formulation is strengthened with valid inequalities and bounds on the big-M constants.
+In order to ease the resolution of the problem, a matheuristic procedure that associates targets to operations by solving a crossing postman problem with neighbors are proposed.
+The different methods are tested for a given square with either a number of points to visit or a number of polygonals to visit.
+The instances are solved starting from scratch or from the solution provided by the matheuristic using two solvers: CPLEX and Gurobi, as the results obtained with both diverge.
+
+Except for Section 1 (see comments below), the paper is generally well organized and well written. The formulation is clearly introduced and suitably illustrated. The matheuristic procedure complements it by providing it a practical dimension and the experiments show that its use significantly improves the results of the exact formulation.
+
+
+Detailed Comments
+1. Section 1: The presentation of this section is very confusing. It is difficult to understand whether the problem addressed considers a single drone or more than 1 (both are mentioned). It is unclear whether the launching and retrieving stages of the drone are the same or not. It is said that both cases will be considered and two formulations will be presented, but there is no sign of the second one. Finally, the organization of the paper is described twice (first on page 2 and also at the end of the section).
+
+2. Page 3, paragraph 5: Point i) is missing.
+
+3. Figures 2 to 4: When referring to these plots, distinguishing the lines by the type of line rather than the color would ease the reading of black and white print outs.
+
+4. The difference between visiting a point and visiting a graph with a single is unclear.
+
+5. The following typos should be corrected:
+Page  Lines                     Instead of  Use
+  13       9                ``before to start''  ``before starting''?
+  14  38, 48            ``s.a.''  ``s.t.''
+  14     45            ``possible compute''  ``possible to compute''
+  22     45            ``This papers''  ``This paper''
+  22     55            ``the the''  ``the''

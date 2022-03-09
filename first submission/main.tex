@@ -1,0 +1,103 @@
+\documentclass[10pt,a4paper]{elsarticle}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+%\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{mathtools,amssymb}
+\usepackage{subfigure}
+\usepackage{optidef}
+\usepackage{xcolor}
+\usepackage{bm}
+%\usepackage{booktabs}
+\usepackage{amsthm}
+\usepackage{comment}
+\usepackage[ruled]{algorithm2e}
+\usepackage{xspace}
+\usepackage{pgfplots}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\usepackage{ulem}
+\usepackage{multirow}
+\usepackage{url}
+%\usepackage{refcheck}
+\newtheorem*{remark}{Remark}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\usepackage[margin=1in]{geometry}
+
+\def\MDR{{\sf MDRPG\xspace}}
+\def\AMD{{\sf Multitarget-MDRP\xspace}}
+\def\NMD{{\sf NMDRPG\xspace}}
+\def\PMD{{\sf PMDRPG\xspace}}
+\definecolor{armygreen}{rgb}{0.19, 0.53, 0.43}
+\definecolor{atomictangerine}{rgb}{1.0, 0.6, 0.4}
+\newcommand{\JP}[1]{{\color{armygreen}#1}}
+\newcommand{\CV}[1]{{\color{atomictangerine}#1}}
+\newcommand{\LA}[1]{{\color{blue}#1}}
+\renewcommand{\arraystretch}{1.5}
+
+\title{Coordinating drones with mothership vehicles: The multitarget drone routing problem}
+%\author{Lavinia Amorosi, Justo Puerto, Carlos Valverde}
+
+\author[1]{Lavinia Amorosi}
+\ead{lavinia.amorosi@uniroma1.it}
+\author[2]{Justo Puerto}
+\ead{puerto@us.es}
+\author[2]{Carlos Valverde\corref{cor1}}
+\ead{cvalverde@us.es}
+
+\cortext[cor1]{Corresponding author \ead{cvalverde@us.es}}
+
+\address[1]{Department of Statistical Sciences, Sapienza University of Rome, Italy}
+\address[2]{Department of Statistical Sciences and Operational Research, University of Seville, Spain}
+
+\date{\today}
+
+\begin{document}
+
+
+\begin{abstract}
+This paper considers the optimization problems that arise to coordinate a tandem between a mothership vehicle and a drone. The drone is supported by the mothership to perform its operations. 
+They consist on visiting one or more points or traversing (partially) polygonals with given lengths to deliver some service or to perform some surveillance/inspection activities.
+The mothership works as a mobile recharging station for the drone and it moves freely on a continuous space so that the launching and retrieving points of the drone can be anywhere and must be determined. 
+%After completing each operation the drone returns to the mothership to recharge batteries and be ready for a new operation. 
+The goal is to minimize the overall weighted distance traveled by the mothership and the drone, while satisfying some requirements in terms of percentages of visits to these polygonals. In all cases, we develop exact formulations resorting to mixed integer second order cone programs that are compared on a testbed of instances to assess their performance. We also develop  heuristic algorithms that provide reasonable solutions in short computing time.  Extensive computational experiments show the usefulness of our methods in different scenarios. 
+\end{abstract}
+
+
+
+\maketitle
+
+
+\input{introduction}
+%\input{literature}
+\input{description}
+\input{formulations}
+\input{bounds}
+\input{heuristic}
+% \input{Benders-like}
+\input{experiments}
+%\input{case_study}
+\input{conclusion}
+\section*{Acknowledgements}
+This research has been partially supported by the Agencia Estatal de Investigación (AEI) and the European Regional Development’s funds (ERDF): PID2020-114594GB-C21; 
+Regional Government of Andalusia: projects CEI-3-FQM331, FEDER-US-1256951, and P18-FR-1422; Fundación BBVA: project NetmeetData (Ayudas
+Fundación BBVA a equipos de investigación científica 2019) and University of Rome, Sapienza grant number RM11916B7F962975.
+
+%\section{Introduction}
+
+%\bibliographystyle{apa}
+
+\bibliographystyle{elsarticle-num-names}
+% \printbibliography
+
+\bibliography{bibliography2.bib}
+
+\input{appendix}
+\end{document}

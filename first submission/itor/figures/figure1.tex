@@ -1,0 +1,41 @@
+\pgfplotsset{compat=1.15}
+
+\begin{figure}
+\centering
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\begin{axis}[
+x=0.1cm,y=0.1cm,
+axis lines=middle,
+ymajorgrids=true,
+xmajorgrids=true,
+xmin=-10,
+xmax=110,
+ymin=-10,
+ymax=110,
+xtick={0,10,...,100},
+ytick={0,10,...,100},]
+%\clip(-86.54891610135228,-35.76340486396641) rectangle (196.61700168770358,127.62998372971737);
+%\fill[line width=2pt] (0,100) -- (0,0) -- (100,0) -- (100,100) -- cycle;
+%\fill[line width=2pt] (35,75) -- (35,65) -- (45,65) -- (45,75) -- cycle;
+%\fill[line width=2pt] (80,35) -- (80,20) -- (90,24) -- (90,32) -- cycle;
+\draw [line width=1pt] (10,90)-- (15,80)-- (20,90)-- (25,80)-- (30,90);
+\draw [line width=1pt] (35,75)-- (35,65);
+\draw [line width=1pt] (35,65)-- (45,65);
+\draw [line width=1pt] (45,65)-- (45,75);
+\draw [line width=1pt] (45,75)-- (35,75);
+\draw [line width=1pt] (60,40)-- (60,55)-- (70,55)-- (70,48)-- (60,48)-- (70,40);
+\draw [line width=1pt] (80,35)-- (80,20);
+\draw [line width=1pt] (80,20)-- (90,24);
+\draw [line width=1pt] (90,24)-- (90,32);
+\draw [line width=1pt] (90,32)-- (80,35);
+\draw (-10,-2) node[anchor=north west] {$\mathbf{orig}$};
+\draw (101,105) node[anchor=north west] {$\mathbf{dest}$};
+\begin{scriptsize}
+\draw [fill=black] (0,0) ++(-4.5pt,0 pt) -- ++(4.5pt,4.5pt)--++(4.5pt,-4.5pt)--++(-4.5pt,-4.5pt)--++(-4.5pt,4.5pt);
+\draw [fill=black] (100,100) ++(-4.5pt,0 pt) -- ++(4.5pt,4.5pt)--++(4.5pt,-4.5pt)--++(-4.5pt,-4.5pt)--++(-4.5pt,4.5pt);
+\end{scriptsize}
+\end{axis}
+\end{tikzpicture}
+\caption{Example of problem instance with polygonal targets.}
+\label{fig:Fig1}
+\end{figure}

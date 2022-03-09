@@ -1,0 +1,348 @@
+
+\section{Experimental results} \label{results}
+
+
+% \begin{figure}[h!]
+% \begin{center}
+%  \includegraphics[width=1\linewidth]{Grid_generation.png}
+% \end{center}
+% \end{figure}
+
+
+In this section we discuss the experimental results obtained testing the formulation presented in Section \ref{Form} and the matheuristic procedure proposed in Section \ref{Math} on a testbed of instances.\\
+In particular, we consider instances of two typologies: the first one in which the targets to be visited are represented by points randomly located in a square of side 100 units, and the second one where the targets are represented by polygonals.\\
+In this latter case, we set the cardinality of the set of points of the polygonal we want to build equal to 4 (this is for guaranteeing that the drone endurance is sufficient for traversing the whole polygonal) and we generate a random value $r$ in the interval $(5, 10)$. This value is used to generate a point $P=(P_x, P_y)$ inside the sub-square $[r, 100-r]^2$.\\
+Next, sequentially, we generate a random angle $\alpha \in (0,2\pi)$ and from the current point $P$, we generate a new point $Q=(P_x+r*cos(\alpha), P_y + r*sin(\alpha))$. If point $Q$ belongs to the square $[r, 100-r]^2$, then we connect point $Q$ to point $P$ with a segment. Otherwise, we update $\alpha$ by adding $\pi/6$ to it until we obtain a point $Q^{'}=(P_x+r*cos(\alpha), P_y + r*sin(\alpha))$ that belongs to the square $[r, 100-r]^2$.
+Then, the same procedure is repeated to generate the remaining break points of the polygonal.\\
+For each of the two typologies, we generate instances of increasing size (number of targets) ranging between 5 and 15. For each size, we consider values of the drone endurance in the set $\{30,40,50,60,70\}$. For each combination of size and endurance value, we generate 5 instances.
+We run the formulation on these instances by adopting two different commercial solvers, Cplex and Gurobi, setting a time limit of 2 hours.
+Table \ref{table:tab1} shows the results of this comparison. Specifically, for each typology (Type 1 for points, Type 2 for polygonals), for each size and each endurance value, we report the number of instances for which the solvers are able to find at least a feasible solution of the problem within the time limit (\# f.i.), the average gap (Gap) and the average solution time in seconds (Time).
+
+
+
+
+
+%\begin{figure}[h!]
+%\begin{center}
+% \includegraphics[width=0.6\linewidth]{Grid_generation_2.png}
+%\end{center}
+%\caption{Example of generation of a grid graph}
+%\label{fig:fig1}
+%\end{figure}
+ 
+ 
+
+
+ 
+\begin{table}[!h]
+\caption{Comparison between Cplex and Gurobi}
+\centering
+\tiny
+\begin{tabular}{|c|c|c c c c c c|c c c c c c|}
+\hline
+\multirow{3}{*}{\textbf{|$\mathcal{T}$|}} & \multirow{3}{*}{\textbf{N}} & \multicolumn{6}{|c|}{\textbf{Type 1}} & \multicolumn{6}{|c|}{\textbf{Type 2}}\\
+%\cline{4-15}
+& & \multicolumn{3}{c|}{Cplex} & \multicolumn{3}{c|}{Gurobi} & \multicolumn{3}{c|}{Cplex} & \multicolumn{3}{c|}{Gurobi} \\
+%\cline{3-15}
+& & \# f.i. & Gap & Time & \# f.i. & Gap & Time & \# f.i. & Gap & Time & \# f.i. & Gap & Time\\
+\hline
+\multirow{5}{*}{\midrule 5} 
+& 30 & 5 & 0 & 5,33 & 5 & 0 & 4.99 & 5 & 0 & 13,41 & 5 & 0 & 196.26\\
+& 40 & 5 & 0 & 5,08 & 5 & 0 & 3.13 & 5 & 0 & 10,9 &  5 & 0 & 322.56\\
+& 50 & 5 & 0 & 4,73 & 5 & 0 & 4.86 & 5 & 0 & 13,05 & 5 & 0 & 216.28\\
+& 60 & 5 & 0 & 5,27 & 5 & 0 & 3.48 & 5 & 0 & 19,07 & 5 & 0 & 339.01\\
+& 70 & 5 & 0 & 5,27 & 5 & 0 & 4.42 & 5 & 0 & 16,36 & 5 & 0 & 276.53\\
+\hline
+\multirow{5}{*}{\midrule 6} 
+& 30 & 5 & 0 &  21,95 & 5 & 0 & 262.57 & 5 & 0 & 148.69 & 5 & 0.09 & 4250.68\\
+& 40 & 5 & 0 &  30,5 & 5 & 0 & 106.7 &  5  & 0 & 238.77 &	5 &	0.14 &	5196.74\\
+& 50 & 5 & 0 &	34,08 & 5 &	0 &	193.8 &  5 & 0 & 193.8  & 5 & 0.09 &	5333.45\\
+& 60 & 5 & 0 &	33,39 &	5 &	0 &	138.46 & 5 & 0 & 185.92 & 4 & 0.25 &	6602.12\\
+& 70 & 5 & 0 &	36,3 &	5 &	0 &	198.59 & 5 & 0 & 264.39 & 4 & 0.46 &	7200.52\\
+\hline
+\multirow{5}{*}{\midrule 7} 
+& 30 &	5 &	0 &	229,75 & 5 & 0.11 &	4729.31 & 5 & 0    & 3063.24 & 2 &	0.62 &	7200.23\\
+& 40 &	5 &	0 &	268,47 & 5 & 0.08 &	4060.19 & 5 & 0,06 & 3420.54 & 2 & 0.44 & 7200.11\\
+& 50 &	5 &	0 &	255,35 & 5 & 0.23 &	6592.4  & 5 & 0,05 & 4034.04 & 3 &	0.58 &	7200.17\\
+& 60 &	5 &	0 &	348,62 & 5 & 0.29 &	5879.46 & 5 & 0    & 4787.98 & 1 & 0.55 & 7200.17\\
+& 70 &	5 &	0 &	301,47 & 5 & 0.27 &	6258.75 & 5 & 0    & 3986.24 & 0	& * & *\\
+\hline
+\multirow{5}{*}{\midrule 8} 
+& 30 &	5 &	0 & 2265,56 & 5 & 0.73 & 7200.15 & 5 & 0,42 & 7200.02 & 1 &	0.73 &	7200.68\\
+& 40 &	5 &	0 & 2820,11 & 5 & 0.61 & 7200.21 & 5 & 0,48 & 7200.02 & 0 & * & *\\
+& 50 &	5 &	0 &	2877,69 & 5 & 0.65 & 7200.09 & 5 & 0,51 & 7200.02 & 0 & * & *\\
+& 60 &	5 &	0 & 3159,62 & 5 & 0.76 & 7200.25 & 5 & 0,44 & 7200.02 &	0 &	* &	*\\
+& 70 &	5 &	0 &	3188,16 & 5 & 0.72 & 7200.13 & 5 & 0,48 & 7200.02 &	0 &	* &	*\\
+\hline
+\multirow{5}{*}{\midrule 9} 
+& 30 &  5 & 0,36 & 7200,03 & 5 & 0.86 &	7200.19 & 5 & 0,68 & 7200.03 &	0 &	* &	*\\
+& 40 &	5 &	0,35 & 7200,02 & 5 & 0.89 &	7200.23 & 5 & 0,66 & 7200.02 & 0 & * & *\\
+& 50 &	5 &	0,37 & 7200,1 & 5 & 0.83 &	7200.2  & 5 & 0,67 & 7200.02 & 0 & * & *\\
+& 60 &	5 &	0,36 & 7200,1& 5 & 0.83  &	7200.18 & 5 & 0,66 & 7200.02 & 0 & * & *\\
+& 70 &	5 &	0,33 & 7200,02 & 5 & 0.87 &	7200.24 & 5 & 0,64 & 7200.02 &	0 &	* & *\\
+\hline
+\multirow{5}{*}{\midrule 10} 
+& 30 & 5 &	0,5 &	7200,42 & 5 & 0.92 & 7200.35 & 5 & 0,69 & 7200.03 &	0 &	* &	*\\
+& 40 & 5 &	0,48 &	7200,62 & 5 & 0.91 & 7200.19 & 5 & 0,7 & 7200.04 &	0 &	* &	*\\
+& 50 & 5 &	0,53 &	7200,47 & 5 & 0.92 & 7200.2  & 5 & 0,7 & 7200.04 & 0 & * & *\\
+& 60 & 5 &	0,51 &	7200,94 & 5 & 0.92 & 7200.2  & 5 & 0,69 & 7200.14 & 0 & * & *\\
+& 70 & 5 &	0,47 &	7201,19 & 5 & 0.92 & 7200.23 & 5 & 0,71 & 7200.04 &	0 &	* &	*\\
+\hline
+\multirow{5}{*}{\midrule 11} 
+& 30 & 5 & 0,61 & 7200,35 &	5 &	0.94 & 7200.48 & 5 & 0,71 &	7200.03 & 0 & * & *\\
+& 40 & 5 & 0,65 & 7200,2  &	5 &	0.95 & 7200.18 & 5 & 0,7 &	7200.07 & 0 & * & *\\
+& 50 & 5 & 0,65 & 7200,42 &	5 &	0.93 & 7200.24 & 5 & 0,69 &	7200.03 & 0 & * & *\\
+& 60 & 5 & 0,64 & 7200,54 &	5 &	0.94 & 7200.28 & 5 & 0,71 &	7200.04 & 0 & * & *\\
+& 70 & 5 & 0,6 &  7201,07 &	5 &	0.93 & 7200.23 & 5 & 0,72 &	7200.03 & 0 & * & *\\
+\hline
+\multirow{5}{*}{\midrule 12} 
+& 30 &	5 &	0,76 &	7200,59 &	5 &	 0.96 &	7200.24 &	5 &	0,72 &	7200.04 &	0 &	* &	*\\
+& 40 &	5 &	0,75 &	7200,64 &	5 &	0.96 &	7200.29 &	5 &	0,72 &	7200.04 &	0 &	* &	*\\
+& 50 &	5 &	0,72 &	7200,84 &	5 &	0.95 &	7200.28 &	5 &	0,72 &	7200.04 &	0 &	* &	*\\
+& 60 &	5 &	0,74 &	7200,92 &	5 &	0.96 &	7200.22 &	5 &	0,71 &	7200.05 &	0 &	* &	*\\
+& 70 &	5 &	0,71 &	7200,96 &	4 &	0.96 &	7200.25 &	5 &	0,71 &	7200.06 &	0 &	* &	*\\
+\hline\multirow{5}{*}{\midrule 13} 
+& 30 & 5 &0,85 & 7200,04 &	2 &	0.97 &	7200.31 &	5 &	0,76 &	7200.07 &	0 &	* &	*\\
+& 40 & 5 &0,84 & 7200,06 &	2 &	0.96 &	7200.32 &	5 &	0,75 &	7200.04 &	0 &	* &	*\\
+& 50 & 5 &0,82 & 7200,13 &	1 &	0.96 &	7200.24 &	5 &	0,75 &	7200.04 &	0 &	* &	*\\
+& 60 & 5 &0,82 & 7200,08 &	2 &	0.97 &	7200.32 &	5 &	0,74 &	7200.05 &	0 &	* &	*\\
+& 70 & 5 &0,83 & 7200,3  &	3 &	0.97 &	7200.4  &	5 &	0,75 &	7200.06 &	0 &	* &	*\\
+\hline\multirow{5}{*}{\midrule 14} 
+& 30 &	5 &	0,91 &	7200,26 &	0 &	* &	* &	5 &	0,73 &	7200.06 &	0 &	* &	*\\
+& 40 &	5 &	0,9  &	7200,04 &	0 &	* &	* &	5 &	0,72 &	7200.07 &	0 &	* & *\\
+& 50 &	5 &	0,89 &	7200,28 &	0 &	* &	* &	5 &	0,72 &	7200.06 &	0 &	* &	*\\
+& 60 &	5 &	0,89 &	7200,23 &	0 &	* &	* &	5 &	0,73 &	7200.08 &	0 &	* &	*\\
+& 70 &	5 &	0,91 &	7200,22 &	0 &	* &	* &	5 &	0,71 &	7200.05 &	0 &	* &	*\\
+\hline
+\multirow{5}{*}{\midrule 15} 
+& 30 &	5 &	0,92 &	7200,07 &	0 &	* &	* &	5 &	0,72 &	7200.12 &	0 &	* &	*\\
+& 40 &	5 &	0,9  &	7200,05 &	0 &	* &	* &	5 &	0,7 &	7200.08 &	0 &	* &	*\\
+& 50 &	5 &	0,91 &	7200,25 &	0 &	* &	* &	5 &	0,72 &	7200.19 &	0 &	* &	*\\
+& 60 &	5 &	0,92 &	7200,19 &	0 &	* &	* &	5 &	0,73 &	7200.41 &	0 &	* &	*\\
+& 70 &	5 &	0,93 &	7200,22 &	0 &	* &	* &	5 &	0,71 &	7200.08 &	0 &	* &	*\\
+\hline
+\end{tabular}
+\label{table:tab1}
+\end{table}
+
+
+\noindent
+
+
+From Table \ref{table:tab1} we can observe that there is a significant difference in the solvers performances. Indeed, Gurobi is not able to find a feasible solution, within the time limit,  for any of  the instances of Type 1 for the largest size instances ($|\mathcal{T}|\in \{14,15\}$)  and for instances of Type 2 from size 8 and drone endurance equal to 40. Moreover, for instances of Type 1 and sizes 12 and 13 and for instances of Type 2 and sizes 6, 7 and 8, it is able to find a feasible solution only for a subset of them, as reported by the counter $\#$ f.i.\\
+On the contrary, Cplex is always able to find  feasible solutions for all instances of both Types and for all sizes.\\
+\indent This behaviour of the two solvers seems to be explainable by the different internal implementation for handling the lazy constraints in the formulations during the solution process. Indeed, by analyzing the .mps files generated by both solvers, we found out that Gurobi embeds the lazy constraints directly before to start  the branch and bound procedure, while Cplex adds them during the solution procedure when they are actually needed. This difference leads Gurobi to load and solve a more complex formulation since the beginning of the solution procedure. For this reason it is not able to find a feasible solution in 2 hours for most of the largest instances.\\
+\indent Regarding the number of instances solved to optimality, Cplex can solve instances up to size 8 of Type 1 within the time limit. In particular, it is able to solve, in average, in less than 6 seconds instances of size 5, in at most 36 seconds instances of size 6, in less than 6 minutes instances of size 7 and in at most 53 minutes instances of size 8. We can observe that the average solution time, increases by an order of magnitude, with respect to the instance size,  up to size 8 and for larger size instances it reaches the time limit of 2 hours. Also considering the comparison between Cplex and Gurobi, we can observe a difference of an order of magnitude in the solution times for Type 1 instances up to size 7 and for Type 2 instances up to size 6.\\
+The average gap associated with the solutions provided by both Cplex and Gurobi, ranges between 0.05 and 0.93 and it increases with the instances size. The instances of Type 2 seem to be the most difficult to solve. Indeed, depending on the instances size, the solution time is one or two orders of magnitude greater than that for instances of Type 1. However, from instances of size 12, we can observe that the average gap associated with instances of Type 1, solved by means of Cplex, is always greater than the one associated with instances of Type 2.
+
+
+
+
+
+\begin{table}[!h]
+\caption{Exact solution via Cplex with and without initialization}
+\centering
+\tiny
+\begin{tabular}{|c|c|c c c c|c c c c|}
+\hline
+\multirow{2}{*}{\textbf{|$\mathcal{T}$|}} & \multirow{2}{*}{\textbf{N}} & \multicolumn{4}{|c|}{\textbf{Type 1}} & \multicolumn{4}{|c|}{\textbf{Type 2}}\\
+& &  Gap (i) & Time\_h  & Time\_f & Gap (wi) &  Gap (i) & Time\_h  & Time\_f & Gap (wi)\\
+\hline
+\multirow{5}{*}{\midrule 5} 
+& 30 &	0 &	0,29 &	4,04 &	0 &	0 &	1.42 &	16.83 &	0\\
+& 40 &	0 &	0,21 &	3,88 &	0 &	0 &	1.47 &	17.17 &	0\\ 
+& 50 &	0 &	0,25 &	4,05 &	0 &	0 &	1.45 &	20.31 &	0\\
+& 60 &	0 &	0,32 &	4,72 &	0 &	0 &	1.42 &	20.75 &	0\\
+& 70 &	0 &	0,25 &	4,13 &	0 &	0 &	1.46 &	25.54 &	0\\
+\hline
+\multirow{5}{*}{\midrule 6} 
+& 30 &	0 &	0,2 &	18,66 &	0 &	0 &	2.41 &	286.12 &	0\\
+& 40 &	0 &	0,17 &	17,92 &	0 &	0 &	2.55 &	394.29 &	0\\
+& 50 &	0 &	0,12 &	19,35 &	0 &	0 &	2.35 &	383.94 &	0\\
+& 60 &	0 &	0,16 &	19,72 &	0 &	0 &	2.24 &	322.92 &	0\\
+& 70 &	0 &	0,18 &	23,35 &	0 &	0 &	2.69 &	413.62 &	0\\
+\hline
+\multirow{5}{*}{\midrule 7} 
+& 30 &	0 &	0,21 &	201,92 &	0 &	0 &	4.25 &	2806.77 &	0\\
+& 40 &	0 &	0,46 &	204,39 &	0 &	0.03 &	4.07 &	4651.65 &	0.06\\
+& 50 &	0 &	0,35 &	213,41 &	0 &	0.15 &	3.87 &	5409.26 &	0.05\\
+& 60 &	0 &	0,46 &	208,24 &	0 &	0.12 &	4.58 &	6281.02 &	0\\
+& 70 &	0 &	0,39 &	243,37 &	0 &	0.06 &	4.48 &	6103.81 &	0\\
+\hline
+\multirow{5}{*}{\midrule 8} 
+& 30 &	0 &	0,7 &	1619,37 &	0 &	0.5  &	7.61 &	7200.03 &	0.42\\
+& 40 &	0 &	0,47 &	2333,97 &	0 &	0.52 &	7.65 &	7200.03 &	0.48\\
+& 50 &	0 &	0,48 &	2020,92 &	0 &	0.5  &	7.45 &	7200.03 &	0.51\\
+& 60 &	0 &	0,63 &	2484,49 &	0 &	0.47 &	7.02 &	7200.15 &	0.44\\
+& 70 &	0 &	0,62 &	2724,14 &	0 &	0.49 &	7.8 &	7200.09 &	0.48\\
+\hline
+\multirow{5}{*}{\midrule 9} 
+& 30 &	0,27 &	0,94 &	7200,15 &	0,36 &	0.65 &	13.64 &	7200.06 &	0.68\\
+& 40 &	0,33 &	0,91  &	7200,71 &	0,35 &	0.66 &	12.31 &	7200.03 &	0.66\\
+& 50 &	0,29 &	0,9  &	7200,37 &	0,37 &	0.66 &	14.88 &	7200.04 &	0.67\\
+& 60 &	0,36 &	0,72  &	7200,4 &	0,36 &	0.66 &	14.63 &	7200.03 &	0.66\\
+& 70 &	0,31 &	0,68  &	7200,55 &	0,33 &	0.63 &	13.37 &	7200.03 &	0.64\\
+\hline
+\multirow{5}{*}{\midrule 10} 
+& 30 &	0,45 &	1,43 &	7200,99 &	0,5  &	0.66 &	22.58 &	7200.02 &	0.69\\
+& 40 &	0,48 &	1,68 &	7201,77 &	0,48 &	0.64 &	20.89 &	7200.02 &	0.7\\
+& 50 &	0,44 &	1,61 &	7201,67 &	0,53 &	0.68 &	21.31 &	7200.16 &	0.7\\
+& 60 &	0,49 &	1,74&	7201,77 &	0,51 &	0.66 &	22.1 &	7200.03 &	0.69\\
+& 70 &	0,46 &	1,8 &	7201,99 &	0,47 &	0.67 &	23.62 &	7200.03 &	0.71\\
+\hline
+\multirow{5}{*}{\midrule 11} 
+& 30 &	0,54 &	1,8 &	7201,87 &	0,61 &	0.67 &	34.72 &	7200.03 &	0.71\\
+& 40 &	0,55 &	2,1 &	7201,78 &	0,65 &	0.67 &	34.9 &	7200.12 &	0.7\\
+& 50 &	0,54 &	2,12 &	7201,68&	0,65 &	0.68 &	34.31 &	7200.13 &	0.69\\
+& 60 &	0,58 &	2    &	7201,54 &	0,64 &	0.68 &	34.9 &	7200.07 &	0.71\\
+& 70 &	0,56 &	2,11 &	7201,75 &	0,6 &	0.68 &	35.02 &	7200.03 &	0.72\\
+\hline
+\multirow{5}{*}{\midrule 12} 
+& 30 &	0,66 &	3,14 &	7201,16 &	0,76 &	0.68 &	51.52 &	7200.18 &	0.72\\
+& 40 &	0,67 &	3,43 &	7201,26 &	0,75 &	0.68 &	53.85 &	7200.15 &	0.72\\
+& 50 &	0,74 &	3,04 &	7201,15 &	0,72 &	0.69 &	53.02 &	7200.08 &	0.72\\
+& 60 &	0,72 &	2,97 &	7201,35 &	0,74 &	0.68 &	53.83 &	7200.07 &	0.71\\
+& 70 &	0,71 &	3,12 &	7201,67 &	0,71 &	0.68 &	58.29 &	7200.04 &	0.71\\
+
+\hline\multirow{5}{*}{\midrule 13} 
+& 30 &  0,81  &	5,42 &	7200,86 &	0,85 &  0.72  &	78.7  &	7200.1  &	0.76\\
+& 40 &	0,8   &	4,3 &	7201,14 &	0,84 &  0.72  &	83.12 &	7200.03 &	0.75\\
+& 50 &	0,83  &	5,46 &	7201,09 &	0,82 &	0.72 &	79.63 &	7200.08 &	0.75\\
+& 60 &	0,81  &	4,16 &	7201,16 &	0,82 &	0.72 &	86.79 &	7200.08 &	0.74\\
+& 70 &	0,82  &	4,28 &	7201,1 &	0,83 &	0.72 &	83.36 &	7200.04 &	0.75\\
+
+\hline\multirow{5}{*}{\midrule 14} 
+& 30 &  0,85  &	6,75 &	7201,03 &	0,91 &	0.67 &	107.31 &	7200.16 &	0.73\\
+& 40 &	0,84 &	5,88 &	7201,02 &	0,9  &  0.67 &	110.38 &	7200.04 &	0.72\\
+& 50 &	0,87 &	6,07 &	7201,29 &	0,89 &	0.67 &	107.14 &	7200.15 &	0.72\\
+& 60 &	0,85 &	5,71 &	7201,15 &	0,89 &	0.67 &	112.05 &	7200.04 &	0.73\\
+& 70 &	0,84 &	6,4 &	7200,97 &	0,91 &	0.67 &	111.62 &	7200.06 &	0.71\\
+\hline
+\multirow{5}{*}{\midrule 15} 
+& 30 &	0,87 &	7,1 &	7202,06 & 0,92 &	0.64 &	141.05 &	7200.27 &	0.72\\
+& 40 &	0,87 &	7   &	7201,2  & 0,9  &	0.64 &	146.34 &	7200.27 &	0.7\\
+& 50 &	0,88 &	9,47 &	7200,87 & 0,91 &	0.63 &	132.54 &	7200.26 &	0.72\\
+& 60 &	0,88 &	6,31 &	7201,39 & 0,92 &	0.63 &	144.69 &	7200.27 &	0.73\\
+& 70 &	0,88 &	7,15 &	7201,33 & 0,93 &	0.64 &	140.05 &	7200.21 &	0.71\\
+\hline
+\end{tabular}
+\label{table:tab2}
+\end{table}
+%}
+
+
+Table \ref{table:tab2} summarizes the comparison between the exact solution of the formulation via Cplex, with and without initialization with the solution found by the matheuristic algorithm. For each typology of instances and for each size and drone endurance, we report the average gap with initialization (Gap (i)), the average running time of the matheuristic (Time\_h), the average running time of the formulation (Time\_f) and the average gap without initialization (Gap (wi)). We can observe that the matheuristic  provides a solution of the problem in less than 1 second for instances of Type 1 up to 9 targets and in less than 10 seconds for instances of Type 1 up to 15 targets. The polygonals instances (Type 2) are more challenging to be solved with solution times of the matheuristic ranging between 1.42 seconds and 2.4 minutes. However, comparing these times with those required by exact solution of the formulation, we can conclude that the matheuristic algorithm is a very good alternative to the exact solver. Moreover, we can observe that when the solution provided by the matheuristic algorithm is used to initialize the solver for the formulation, in most of the cases the final average gap slightly decreases after the time limit is reached. The most significant reduction in the average gap can be observed for the largest size instances of Type 2 for which the average gap with initialization is up to 13$\%$ lower than the one without initialization. As regards the computation times for the exact solution method, we can also observe that if the solution provided by the matheuristic algorithm is used to initialize the solver, the convergence to the optimal solution for instances of Type 1 up to 8 targets is significantly improved.
+
+
+
+
+\begin{table}[!h]
+\caption{Exact solution via Gurobi with and without initialization}
+\centering
+\tiny
+\begin{tabular}{|c|c|c c c c|c c c c|}
+\hline
+\multirow{2}{*}{\textbf{|$\mathcal{T}$|}} & \multirow{2}{*}{\textbf{N}} & \multicolumn{4}{|c|}{\textbf{Type 1}} & \multicolumn{4}{|c|}{\textbf{Type 2}}\\
+& & Gap (i) & Time\_h  & Time\_f & Gap (wi) & Gap (i) & Time\_h  & Time\_f & Gap (wi)\\
+\hline
+\multirow{5}{*}{\midrule 5} & 30 & 0 &	0.01 &	2.15 &	0 &	0 &	0.37 &	71.63 &	0\\
+%\cline{4-15}
+& 40 & 0 &	0.01 &	1.94 &	0 &	0 &	0.34 &	63.95 &	0\\
+%\cline{4-15}
+& 50 & 0 &	0.01 &	2.11 &	0 &	0 &	0.35 &	75.82 &	0\\
+%\cline{4-15}
+& 60 & 0 &	0.01 &	1.59 &	0 &	0 &	0.35 &	103.98 &	0\\
+%\cline{4-15}
+& 70 & 0 &	0.01 &	1.76 &	0 &	0 &	0.35 &	141.09 &	0\\
+\hline
+\multirow{5}{*}{\midrule 6} & 30 & 0 &	0.01 &	33.6 &	0 &	0 &	0.64 &	642.4 &	0.09\\
+& 40 & 0 &	0.01 &	29.34 &	0 &	0 &	0.69 &	1131.4 &	0.14\\
+& 50 &	0 &	0.01 &	66.03 &	0 &	0 &	0.68 & 	1362 &	0.09\\
+& 60 &	0 &	0.01 &	73.52 &	0 &	0 &	0.68 &	2161.66 &	0.25\\
+& 70 &	0 &	0.01 &	49.35 &	0 &	0 &	0.73 &	2011.79 &	0.46\\
+\hline
+\multirow{5}{*}{\midrule 7} & 30 & 0 &	0.02 &	1113.79	& 0.11 &	0.29 &	1.07 &	6680.17 &	0.62\\
+& 40 &	0 &	0.02 &	585.02	& 0.08 &	0.36 &	1.01 &	6969.07 &	0.44\\
+& 50 & 0 &	0.02 &	1193.87 &	0.23 &	0.35 &	1.04 &	6708.26 &	0.58\\
+& 60 &	0 &	0.02 &	1474.48 &	0.29 &	0.32 &	1.09 &	6871.41 &	0.55\\
+& 70 &	0 &	0.02 &	1046.2 &	0.27 &	0.42 &	1.06 &	7200.19 &	*\\
+\hline
+\multirow{5}{*}{\midrule 8} & 30 &	0.09 &	0.02 &	4446.46 &	0.73 &	0.63 &	3.03 &	7200.19 &	0.73\\
+& 40 &	0.18 &	0.02 &	5660.75 &	0.61 &	0.62 &	1.34 &	7200.16 &	*\\
+& 50 &	0.28 &	0.02 &	6581.53 &	0.65 &	0.62 &	1.36 &	7200.19 &	*\\
+& 60 &	0.32 &	0.02 &	6112.57	& 0.76 &	0.63 &	1.45 &	7200.25 &	*\\
+& 70 &	0.21 &	0.02 &	5863.52 &	0.72 &	0.62 &	1.42 &	7200.14 &	*\\
+\hline
+\multirow{5}{*}{\midrule 9} & 30 & 0.55 &	0.04 &	7200.16 &	0.86 &	0.72 &	3.28 &	7200.14	 & *\\
+& 40 &	0.49 &	0.04 &	7200.15 &	0.89 &	0.71 &	3.24 &	7200.12	& *\\
+& 50 &	0.61 &	0.03 &	7200.12	& 0.83	& 0.7 &	3.16 &	7200.13 &	*\\
+& 60 &	0.55 &	0.03 &	7200.16 &	0.83 &	0.7 &	3.27 &	7200.11 &	*\\
+& 70 & 0.44 &	0.03 &	7200.21 &	0.87 &	0.71 &	3.26 &	7200.11	& *\\
+\hline
+\multirow{5}{*}{\midrule 10} & 30 &	0.66 &	0.06 &	7200.23 &	0.92 &	0.7 &	8.27 &	7200.15 &	*\\
+& 40 &	0.65 &	0.06 &	7200.21 &	0.91 &	0.69 &	8.19 &	7200.17 &	*\\
+& 50 &	0.64 &	0.05 &	7200.19	 & 0.92 &	0.69 &	8.21 &	7200.15 &	*\\
+& 60 &	0.62 &	0.06 &	7200.22 &	0.92 &	0.68 &	8.13 &	7200.15 &	*\\
+& 70 &	0.68 &	0.07 &	7200.18 &	0.92 &	0.7 &	8.3 &	7200.13	& *\\
+\hline
+\multirow{5}{*}{\midrule 11} & 30 &	0.7	& 0.11 &	7200.37	& 0.94	& 0.68 &	11.7 &	7200.2 & *\\
+& 40 &	0.73 &	0.11 &	7200.2	& 0.95 &	0.68 &	11.71 &	7200.1 &	*\\
+& 50 &	0.69 &	0.11 &	7200.21 &	0.93 &	0.67 &	11.71 &	7200.15 &	*\\
+& 60 &	0.71 &	0.11 &	7200.21	 & 0.94 &	0.67 &	11.65 &	7200.16 &	*\\
+& 70 &	0.72 &	0.11 &	7200.2 &	0.93 &	0.67 &	11.68 &	7200.14	& *\\
+\hline
+\multirow{5}{*}{\midrule 12} & 30 &	0.83 &	0.25 &	7200.22 &	0.96 &	0.68 &	15.83 &	7200.09 &	*\\
+& 40 &	0.83 &	0.25 &	7200.27 &	0.96 &	0.68 &	15.76 &	7200.14 &	*\\
+& 50 &	0.85 &	0.26 &	7200.19	& 0.95	& 0.68 &	23.28 &	7201.3 &	*\\
+& 60 &	0.84 &	0.25 &	7200.28 &	0.96 &	0.68 &	15.92 &	7201.16 &	*\\
+& 70 &	0.87 &	0.31 &	7200.22 &	0.96 &	0.69 &	15.85 &	7201.7 &	*\\
+\hline\multirow{5}{*}{\midrule 13} & 30 &	0.92 &	0.8	& 7200.29 &	0.97 &	0.71 &	26.34 &	7200.23	& *\\
+& 40 &	0.89 &	0.85 &	7200.5	& 0.96 &	0.71 &	26.41 &	7200.24 &	*\\
+& 50 &	0.91 &	0.82 &	7200.72 &	0.96 &	0.71 &	26.41 &	7200.4	 &*\\
+& 60 &	0.89 &	0.8 &	7200.37 &	0.97 &	0.71 &	26.43 &	7200.26 &	*\\
+& 70 &	0.92 &	0.84 &	7200.41 &	0.97 &	0.71 &	26.33 &	7200.22 &	*\\
+\hline\multirow{5}{*}{\midrule 14} & 30 &	0.95 &	2.95 &	7200.7 &	* &	0.67 &	52.07 &	7280.27 &	*\\
+& 40 &	0.95 &	2.87 &	7200.81 &	* &	0.67 &	61.06 &	7200.33 &	*\\
+& 50 &	0.95 &	2.87 &	7200.77 &	* &	0.67 &	78.34 &	7200.34 &	*\\
+& 60 &	0.96 &	2.91 &	7200.87 &	* &	0.67 &	61.55 &	7200.28 &	*\\
+& 70 &	0.93 &	2.92 &	7201.08 &	* &	0.67 &	52.78 &	7200.37 &	*\\
+\hline
+\multirow{5}{*}{\midrule 15} & 30 &	0.99 &	8.71 &	7200.4 &	* &	0.62 &	99.44 &	7200.55	& *\\
+& 40 &	1 &	8.54 &	7200.61	& *	 & 0.62	& 84.45	& 7200.54 &	*\\
+& 50 &	1 &	8.43 &	7200.36	& *	& 0.62 &	124.48 &	7201.41 &	*\\
+& 60 &	1 &	8.35 &	7200.5 &	* &	0.63 &	139.61	& 7200.8 &	*\\
+& 70 &	1 &	8.48 &	7200.27 &	* &	0.63 &	109.46 &	7200.33 &	*\\
+\hline
+\end{tabular}
+\label{table:tab3}
+\end{table}
+
+
+Similarly, Table \ref{table:tab3} reports the comparison between the exact solution of the formulation via Gurobi, with and without initialization with the solution found by the matheuristic algorithm. In this case, the initialization permits to overcome the problem met by the Gurobi solver that, as also reported in Table \ref{table:tab1}, was not able to find a feasible solution for instances of Type 1 from size 14 and for instances of Type 2 from size 8. In particular, we can observe that for instances of Type 1 and from size 9, the initialization with the matheuristic solution improves more than with respect to same process in Cplex in terms of average gap.
+
+
+In Figure \ref{fig:Fig4} and Figure \ref{fig:Fig5} we show the boxplots representing the gap values for the different instance sizes, distinguishing between the two typologies (Type 1: point or Type 2: polygonal targets) respectively by using Gurobi and Cplex. On the left of both figures we can observe the gap values obtained by solving the formulation without initialization, while on the right, the ones obtained by providing to the solvers the initial solution generated by the matheuristic algorithm. 
+Specifically, we can visualize that the gap values for instances with point targets (Type 1) increase with the problem size in the exact solution both without and with initialization and with both solvers. However, as already observed in Table \ref{table:tab1}, Gurobi solver without initialization is not able to solve point instances of size 14 and 15. As regards the polygonal instances (Type 2), we can observe a different behaviour with respect to the gap, which increases with the instances size up to 9 targets. From instances of size 10 its gap, excluding outliers, always ranges in the interval [0.6, 0.8]. This can be still observed also by initializing the exact solution of the formulation even if, as already mentioned, in this latter case the gap values decrease and in most of the cases they belong to the interval [0.6,0.7], always excluding outliers. Thus, the polygonal instances are more difficult than the point instances for sizes up to 10. For bigger size instances, the gap value for polygonal instances consistently belongs to a fixed interval, while the gap for point instances increases with the size. 
+
+In order to further investigate this behaviour, we run the mathematical programming formulation with Cplex on one of the biggest size instances with 15 targets and endurance equal to 40, for both types of targets (Type 1 and 2) and setting a time limit of 24 hours. Figure \ref{fig:Fig6} reports the objective function value and the lower bound value obtained over time, respectively, for the point and the polygonal targets versions of this instance. We can observe that the initial value of the lower bound for the point targets instance is equal to 0 while the one for the polygonal targets instance is equal to 331. This difference is due to the different structure of the targets. Indeed, for the polygonal targets the formulation includes the constraint imposing the visit of a given minimum percentage of each polygonal. This implies that the first value of the lower bound is greater than 0. Thus, while the solution process for the point targets instance starts from a gap equal to 100\%, the one for the polygonal targets instance starts from a gap equal to 80\%, as we can also observe in Figure \ref{fig:Fig6}. This different initial gap allows the solver to slowly improve it in the first case but not in the second one. Actually, only after around 15 hours of cpu, we can observe that the two gaps (for the instance of Type 1 and 2) are equal and then the value of the gap for the point targets instance continues to decrease, whereas the one related to the polygonal targets instance does not change in the remaining time. This is explained because the lower bound of the point targets instance improves over time, see Figure \ref{fig:Fig6}, but it does not change at all for the polygonal targets instance.
+This behaviour shows that the instances of Type 2 (polygonal targets) are still more difficult to be solved than the instances of Type 1 (point targets). However, the different structure of the targets provides an initial advantage in the lower bound of the polygonal target instances, due to the constraint related to the minimum percentage of each polygonal to be visited, that can be exploited by the solver for the biggest sizes.
+
+
+
+
+\input{boxplots_gap_gurobi}
+
+\input{boxplots_gap_cplex}
+
+\input{lineplot_gap_comparison}
+
+
+
+
+
+
+
+
+
+
+

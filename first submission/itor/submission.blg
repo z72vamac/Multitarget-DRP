@@ -1,0 +1,59 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: submission.aux
+Reallocating 'name_of_file' (item size: 1) to 5 items.
+The style file: itor.bst
+Reallocating 'name_of_file' (item size: 1) to 18 items.
+Database file #1: bibliography2.bib
+Warning--empty booktitle in art:Amorosi2020
+Warning--empty pages in art:Amorosi2020
+Warning--empty journal in art:Amorosi2021b
+You can't pop an empty literal stack for entry art:Chiaraviglio2019
+while executing---line 1524 of file itor.bst
+Warning--empty booktitle in art:Pugliese2017
+You can't pop an empty literal stack for entry art:Garone2010
+while executing---line 1524 of file itor.bst
+You can't pop an empty literal stack for entry Jimenez2018
+while executing---line 1524 of file itor.bst
+You've used 33 entries,
+            2914 wiz_defined-function locations,
+            852 strings with 12832 characters,
+and the built_in function-call counts, 19064 in all, are:
+= -- 1705
+> -- 1074
+< -- 10
++ -- 419
+- -- 378
+* -- 1611
+:= -- 3400
+add.period$ -- 110
+call.type$ -- 33
+change.case$ -- 291
+chr.to.int$ -- 31
+cite$ -- 37
+duplicate$ -- 945
+empty$ -- 1290
+format.name$ -- 485
+if$ -- 3682
+int.to.chr$ -- 3
+int.to.str$ -- 1
+missing$ -- 35
+newline$ -- 180
+num.names$ -- 132
+pop$ -- 389
+preamble$ -- 1
+purify$ -- 258
+quote$ -- 0
+skip$ -- 551
+stack$ -- 0
+substring$ -- 888
+swap$ -- 199
+text.length$ -- 6
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 297
+warning$ -- 4
+while$ -- 138
+width$ -- 0
+write$ -- 481
+(There were 3 error messages)

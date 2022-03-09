@@ -1,0 +1,14 @@
+Ordenador PacoRamon: 
+
+Consola: Poligonal con inicializacion de 11 a 15
+	 Punto con inicializacion tamaño 15 (Finalizado)
+	 Poligonal con inicializacion de 14 a 15
+
+Eclipse: Poligonal con inicializacion de 5 a 10
+
+
+Ordenador Tamir:
+
+Consola: Poligonal sin inicializacion de 5 a 10
+	 Poligonal sin inicializacion de 11 a 15
+	 Poligonal sin inicializacion de 14 a 15

@@ -1,0 +1,87 @@
+\documentclass[10pt]{article}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\pagestyle{empty}
+\begin{document}
+\definecolor{ffqqqq}{rgb}{1,0,0}
+\definecolor{qqqqff}{rgb}{0,0,1}
+\definecolor{ffqqff}{rgb}{1,0,1}
+\definecolor{qqffff}{rgb}{0,1,1}
+\definecolor{ududff}{rgb}{0.30196078431372547,0.30196078431372547,1}
+\definecolor{bfffqq}{rgb}{0.7490196078431373,1,0}
+\definecolor{ffxfqq}{rgb}{1,0.4980392156862745,0}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\begin{axis}[
+x=1cm,y=1cm,
+axis lines=middle,
+ymajorgrids=true,
+xmajorgrids=true,
+xmin=-32.09141257195411,
+xmax=142.30227968882565,
+ymin=-4.823160102310087,
+ymax=118.70570524907428,
+xtick={-30,-20,...,140},
+ytick={0,10,...,110},]
+\clip(-32.09141257195411,-4.823160102310087) rectangle (142.30227968882565,118.70570524907428);
+\fill[line width=2pt] (35,75) -- (35,65) -- (45,65) -- (45,75) -- cycle;
+\fill[line width=2pt] (80,35) -- (80,20) -- (90,24) -- (90,32) -- cycle;
+\fill[line width=4pt,color=qqqqff] (0,0) -- (5.6057,20.3868) -- (43.33,67.04) -- (66.16,55.06) -- (70,40) -- (92.93,80.94) -- (100,100) -- cycle;
+\fill[line width=4pt,color=ffqqqq] (5.6057,20.3868) -- (20,90) -- (25,80) -- (30,90) -- (43.33,67.04) -- cycle;
+\fill[line width=4pt,color=ffqqqq] (43.33,67.04) -- (45,65) -- (35,65) -- (35,75) -- (66.16,55.06) -- cycle;
+\fill[line width=4pt,color=ffqqqq] (66.16,55.06) -- (70,52.5969) -- (70,48) -- (60,48) -- (70,40) -- cycle;
+\fill[line width=4pt,color=ffqqqq] (70,40) -- (86.5971,22.6388) -- (80,20) -- (80,35) -- (92.93,80.94) -- cycle;
+\draw [line width=4pt,color=ffxfqq] (10,90)-- (15,80)-- (20,90)-- (25,80)-- (30,90);
+\draw [line width=4pt] (35,75)-- (35,65);
+\draw [line width=4pt] (35,65)-- (45,65);
+\draw [line width=4pt,color=bfffqq] (45,65)-- (45,75);
+\draw [line width=4pt,color=bfffqq] (45,75)-- (35,75);
+\draw [line width=4pt,color=qqffff] (60,40)-- (60,55)-- (70,55)-- (70,48)-- (60,48)-- (70,40);
+\draw [line width=4pt] (80,35)-- (80,20);
+\draw [line width=4pt,color=ffqqff] (80,20)-- (90,24);
+\draw [line width=4pt,color=ffqqff] (90,24)-- (90,32);
+\draw [line width=4pt,color=ffqqff] (90,32)-- (80,35);
+\draw (0.048450585080618544,2.303505206423626) node[anchor=north west] {$\mathbf{orig}$};
+\draw (99.96150344281901,102.21655806416099) node[anchor=north west] {$\mathbf{dest}$};
+\draw [line width=4pt,color=qqqqff] (0,0)-- (5.6057,20.3868);
+\draw [line width=4pt,color=qqqqff] (5.6057,20.3868)-- (43.33,67.04);
+\draw [line width=4pt,color=qqqqff] (43.33,67.04)-- (66.16,55.06);
+\draw [line width=4pt,color=qqqqff] (66.16,55.06)-- (70,40);
+\draw [line width=4pt,color=qqqqff] (70,40)-- (92.93,80.94);
+\draw [line width=4pt,color=qqqqff] (92.93,80.94)-- (100,100);
+\draw [line width=4pt,dash pattern=on 1pt off 1pt,color=ffqqqq] (5.6057,20.3868)-- (20,90);
+\draw [line width=4pt,color=ffqqqq] (20,90)-- (25,80);
+\draw [line width=4pt,color=ffqqqq] (25,80)-- (30,90);
+\draw [line width=4pt,dash pattern=on 1pt off 1pt,color=ffqqqq] (30,90)-- (43.33,67.04);
+\draw [line width=4pt,dash pattern=on 1pt off 1pt,color=ffqqqq] (43.33,67.04)-- (45,65);
+\draw [line width=4pt,color=ffqqqq] (45,65)-- (35,65);
+\draw [line width=4pt,color=ffqqqq] (35,65)-- (35,75);
+\draw [line width=4pt,dash pattern=on 1pt off 1pt,color=ffqqqq] (35,75)-- (66.16,55.06);
+\draw [line width=4pt,color=ffqqqq] (66.16,55.06)-- (70,52.5969);
+\draw [line width=4pt,color=ffqqqq] (70,52.5969)-- (70,48);
+\draw [line width=4pt,color=ffqqqq] (70,48)-- (60,48);
+\draw [line width=4pt,color=ffqqqq] (60,48)-- (70,40);
+\draw [line width=4pt,dash pattern=on 1pt off 1pt,color=ffqqqq] (70,40)-- (86.5971,22.6388);
+\draw [line width=4pt,color=ffqqqq] (86.5971,22.6388)-- (80,20);
+\draw [line width=4pt,color=ffqqqq] (80,20)-- (80,35);
+\draw [line width=4pt,dash pattern=on 1pt off 1pt,color=ffqqqq] (80,35)-- (92.93,80.94);
+\draw [->,line width=4pt,dash pattern=on 1pt off 1pt,color=ffqqqq] (5.6057,20.3868) -- (12.80285,55.1934);
+\draw [->,line width=4pt,dash pattern=on 1pt off 1pt,color=ffqqqq] (30,90) -- (36.665,78.52);
+\draw [->,line width=4pt,dash pattern=on 1pt off 1pt,color=ffqqqq] (35,75) -- (50.58,65.03);
+\draw [->,line width=4pt,dash pattern=on 1pt off 1pt,color=ffqqqq] (70,40) -- (78.29855,31.3194);
+\draw [->,line width=4pt,dash pattern=on 1pt off 1pt,color=ffqqqq] (80,35) -- (86.465,57.97);
+\begin{scriptsize}
+\draw [fill=black] (0,0) ++(-4.5pt,0 pt) -- ++(4.5pt,4.5pt)--++(4.5pt,-4.5pt)--++(-4.5pt,-4.5pt)--++(-4.5pt,4.5pt);
+\draw [fill=black] (100,100) ++(-4.5pt,0 pt) -- ++(4.5pt,4.5pt)--++(4.5pt,-4.5pt)--++(-4.5pt,-4.5pt)--++(-4.5pt,4.5pt);
+\draw [fill=ududff] (70,40) circle (2.5pt);
+\draw [fill=ududff] (70,40) circle (2.5pt);
+\draw [fill=qqqqff] (5.6057,20.3868) circle (2.5pt);
+\draw [fill=qqqqff] (43.33,67.04) circle (2.5pt);
+\draw [fill=qqqqff] (66.16,55.06) circle (2.5pt);
+\draw [fill=qqqqff] (70,40) circle (2.5pt);
+\draw [fill=qqqqff] (92.93,80.94) circle (2.5pt);
+\end{scriptsize}
+\end{axis}
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,239 @@
+\begin{thebibliography}{33}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\providecommand{\eprint}[2][]{\url{#2}}
+%Type = Inproceedings
+\bibitem[{Amorosi et~al.(2020)Amorosi, Caprari, Crainic, Dell'Olmo and
+  Ricciardi}]{art:Amorosi2020}
+Amorosi, L., Caprari, R., Crainic, T., Dell'Olmo, P., Ricciardi, N., 2020.
+\newblock {CIRRELT-2020-17 An Integrated Routing-Scheduling Model for a Hybrid
+  UAV-Based Delivery System}.
+\newblock CIRRELT.
+%Type = Inproceedings
+\bibitem[{{Amorosi} et~al.(2018){Amorosi}, {Chiaraviglio}, {D'Andreagiovanni}
+  and {Blefari-Melazzi}}]{art:Amorosi2018}
+{Amorosi}, L., {Chiaraviglio}, L., {D'Andreagiovanni}, F., {Blefari-Melazzi},
+  N., 2018.
+\newblock Energy-efficient mission planning of uavs for 5g coverage in rural
+  zones.
+\newblock In \textit{2018 IEEE International Conference on Environmental
+  Engineering (EE)}, pp. 1--9.
+%Type = Article
+\bibitem[{Amorosi et~al.(2019)Amorosi, Chiaraviglio and
+  Galan-Jimenez}]{art:Amorosi2019}
+Amorosi, L., Chiaraviglio, L., Galan-Jimenez, J., 2019.
+\newblock {Optimal energy management of uav-based cellular networks powered by
+  solar panels and batteries: Formulation and solutions}.
+\newblock \textit{IEEE Access} Vol. 7, 53698--53717.
+%Type = Article
+\bibitem[{Amorosi et~al.(2021a)Amorosi, Puerto and Valverde}]{art:Amorosi2021}
+Amorosi, L., Puerto, J., Valverde, C., 2021a.
+\newblock {Coordinating drones with mothership vehicles: The mothership and
+  drone routing problem with Graphs}.
+\newblock \textit{Computers and Operations Research} 136.
+%Type = Article
+\bibitem[{Amorosi et~al.(2021b)Amorosi, Puerto and Valverde}]{art:Amorosi2021b}
+Amorosi, L., Puerto, J., Valverde, C., 2021b.
+\newblock {Coordinating drones with mothership vehicles: The mothership and
+  multiple drones routing problem with Graphs},
+\newblock http://arxiv.org/abs/2109.01447.
+%Type = Article
+\bibitem[{Blanco et~al.(2017)Blanco, Fern{\'{a}}ndez and Puerto}]{Blanco2017}
+Blanco, V., Fern{\'{a}}ndez, E., Puerto, J., 2017.
+\newblock Minimum spanning trees with neighborhoods: Mathematical programming
+  formulations and solution methods.
+\newblock \textit{European Journal of Operational Research} 262, 3, 863--878.
+%Type = Article
+\bibitem[{Campbell et~al.(2018)Campbell, Corber{\'{a}}n, Plana and
+  Sanchis}]{art:Campbell2018}
+Campbell, J.F., Corber{\'{a}}n, {\'{A}}., Plana, I., Sanchis, J.M., 2018.
+\newblock {Drone arc routing problems}.
+\newblock \textit{Networks} 72, 4, 543--559.
+%Type = Article
+\bibitem[{Campbell et~al.(2021)Campbell, Ángel Corberán, Plana, Sanchis and
+  Segura}]{art:CAMPBELL202160}
+Campbell, J.F., Ángel Corberán, Plana, I., Sanchis, J.M., Segura, P., 2021.
+\newblock Solving the length constrained k-drones rural postman problem.
+\newblock \textit{European Journal of Operational Research} 292, 1, 60--72.
+%Type = Article
+\bibitem[{Cavani et~al.(2021)Cavani, Iori and Roberti}]{art:Cavani2021}
+Cavani, S., Iori, M., Roberti, R., 2021.
+\newblock Exact methods for the traveling salesman problem with multiple
+  drones.
+\newblock \textit{Transportation Research Part C: Emerging Technologies} 130.
+%Type = Article
+\bibitem[{Chiaraviglio et~al.(2019a)Chiaraviglio, Amorosi, Blefari-Melazzi,
+  Dell'olmo, {Lo Mastro}, Natalino and Monti}]{art:Chiaraviglio2019a}
+Chiaraviglio, L., Amorosi, L., Blefari-Melazzi, N., Dell'olmo, P., {Lo Mastro},
+  A., Natalino, C., Monti, P., 2019a.
+\newblock {Minimum Cost Design of Cellular Networks in Rural Areas with UAVs,
+  Optical Rings, Solar Panels, and Batteries}.
+\newblock \textit{IEEE Transactions on Green Communications and Networking} 3,
+  4, 901--918.
+%Type = Inproceedings
+\bibitem[{{Chiaraviglio} et~al.(2018){Chiaraviglio}, {Amorosi},
+  {Blefari-Melazzi}, {Dell’Olmo}, {Natalino} and
+  {Monti}}]{art:Chiaraviglio2018}
+{Chiaraviglio}, L., {Amorosi}, L., {Blefari-Melazzi}, N., {Dell’Olmo}, P.,
+  {Natalino}, C., {Monti}, P., 2018.
+\newblock Optimal design of 5g networks in rural zones with uavs, optical
+  rings, solar panels and batteries.
+\newblock In \textit{2018 20th International Conference on Transparent Optical
+  Networks (ICTON)}, pp. 1--4.
+%Type = Article
+\bibitem[{Chiaraviglio et~al.(2019b)Chiaraviglio, Amorosi, Malandrino,
+  Chiasserini, Dell'Olmo and Casetti}]{art:Chiaraviglio2019}
+Chiaraviglio, L., Amorosi, L., Malandrino, F., Chiasserini, C.F., Dell'Olmo,
+  P., Casetti, C., 2019b.
+\newblock {Optimal Throughput Management in UAV-based Networks during
+  Disasters}.
+\newblock \textit{INFOCOM 2019 - IEEE Conference on Computer Communications
+  Workshops, INFOCOM WKSHPS 2019}.
+\newblock pp. 307--312.
+%Type = Article
+\bibitem[{Chui et~al.(2016)Chui, Manyika and Miremadi}]{art:Chui2016}
+Chui, M., Manyika, J., Miremadi, M., 2016.
+\newblock Where machines could replace humans-and where they can’t (yet).
+\newblock \textit{McKinsey Q.} 7, 1--6.
+%Type = Article
+\bibitem[{Chung et~al.(2020)Chung, Sah and Lee}]{art:Chung2020}
+Chung, S.H., Sah, B., Lee, J., 2020.
+\newblock {Optimization for drone and drone-truck combined operations: A review
+  of the state of the art and future directions}.
+\newblock \textit{Computers {\&} Operations Research} 123, 105004.
+%Type = Article
+\bibitem[{Coindreau et~al.(2021)Coindreau, Gallay and
+  Zufferey}]{art:Coindreau2021}
+Coindreau, M., Gallay, O., Zufferey, N., 2021.
+\newblock Parcel delivery cost minimization with time window constraints using
+  trucks and drones.
+\newblock \textit{Networks} On line: DOI: 10.1002/net.22019.
+%Type = Article
+\bibitem[{Dell'Amico et~al.(2021)Dell'Amico, Montemanni and
+  Novellani}]{art:Amico2021}
+Dell'Amico, M., Montemanni, R., Novellani, S., 2021.
+\newblock Exact models for the flying sidekick traveling salesman problem.
+\newblock \textit{International Transactions in Operational Research} n/a, n/a.
+\newblock \eprint{https://onlinelibrary.wiley.com/doi/pdf/10.1111/itor.13030}.
+%Type = Inproceedings
+\bibitem[{{Di Puglia Pugliese} and Guerriero(2017)}]{art:Pugliese2017}
+{Di Puglia Pugliese}, L., Guerriero, F., 2017.
+\newblock {Last-Mile Deliveries by Using Drones and Classical Vehicles BT -
+  Optimization and Decision Science: Methodologies and Applications}.
+\newblock Springer International Publishing, Cham, pp. 557--565.
+%Type = Article
+\bibitem[{Garone et~al.(2010)Garone, Naldi, Casavola and
+  Frazzoli}]{art:Garone2010}
+Garone, E., Naldi, R., Casavola, A., Frazzoli, E., 2010.
+\newblock {Cooperative mission planning for a class of carrier-vehicle
+  systems}.
+\newblock \textit{Proceedings of the IEEE Conference on Decision and Control}.
+\newblock pp. 1354--1359.
+%Type = Article
+\bibitem[{Jimenez et~al.(2018)Jimenez, Chiaraviglio, Amorosi and
+  Blefari-Melazzi}]{Jimenez2018}
+Jimenez, J.G., Chiaraviglio, L., Amorosi, L., Blefari-Melazzi, N., 2018.
+\newblock {Multi-Period Mission Planning of UAVs for 5G Coverage in Rural
+  Areas: A Heuristic Approach}.
+\newblock \textit{Proceedings of the 2018 9th International Conference on the
+  Network of the Future, NOF 2018}.
+\newblock pp. 52--59.
+%Type = Article
+\bibitem[{Macrina et~al.(2020)Macrina, Di~Puglia~Pugliese, Guerriero and
+  Laporte}]{art:Macrina2020}
+Macrina, G., Di~Puglia~Pugliese, L., Guerriero, F., Laporte, G., 2020.
+\newblock Drone-aided routing: A literature review.
+\newblock \textit{Transportation Research Part C: Emerging Technologies} 120.
+%Type = Article
+\bibitem[{Mathew et~al.(2015)Mathew, Smith and Waslander}]{art:Mathew2015}
+Mathew, N., Smith, S.L., Waslander, S.L., 2015.
+\newblock {Planning Paths for Package Delivery in Heterogeneous Multirobot
+  Teams}.
+\newblock \textit{IEEE Transactions on Automation Science and Engineering} 12,
+  4, 1298--1308.
+%Type = Article
+\bibitem[{{Mbiadou Saleu} et~al.(2021){Mbiadou Saleu}, Deroussi, Feillet,
+  Grangeon and Quilliot}]{art:MBIA}
+{Mbiadou Saleu}, R.G., Deroussi, L., Feillet, D., Grangeon, N., Quilliot, A.,
+  2021.
+\newblock The parallel drone scheduling problem with multiple drones and
+  vehicles.
+\newblock \textit{European Journal of Operational Research}.
+\newblock doi: https://doi.org/10.1016/j.ejor.2021.08.014.
+%Type = Article
+\bibitem[{{Mourelo Ferrandez} et~al.(2016){Mourelo Ferrandez}, Harbison, Weber,
+  Sturges and Rich}]{art:Ferrandez2016}
+{Mourelo Ferrandez}, S., Harbison, T., Weber, T., Sturges, R., Rich, R., 2016.
+\newblock {Optimization of a truck-drone in tandem delivery network using
+  k-means and genetic algorithm}.
+\newblock \textit{Journal of Industrial Engineering and Management; Vol 9, No 2
+  (2016)DO - 10.3926/jiem.1929}
+%Type = Article
+\bibitem[{Otto et~al.(2018)Otto, Agatz, Campbell, Golden and
+  Pesch}]{art:Otto2018}
+Otto, A., Agatz, N., Campbell, J., Golden, B., Pesch, E., 2018.
+\newblock Optimization approaches for civil applications of unmanned aerial
+  vehicles (uavs) or aerial drones: A survey. .
+\newblock \textit{Networks} Vol. 72, 1--48.
+%Type = Article
+\bibitem[{Poikonen and Golden(2020)}]{art:Poikonen2020}
+Poikonen, S., Golden, B., 2020.
+\newblock {Multi-visit drone routing problem}.
+\newblock \textit{Computers and Operations Research} 113, 104802.
+%Type = Article
+\bibitem[{Puerto and Valverde(2021)}]{Puerto2021}
+Puerto, J., Valverde, C., 2021.
+\newblock Routing for unmanned aerial vehicles: Touring dimensional sets.
+\newblock \textit{European Journal of Operational Research}.
+\newblock doi: https://doi.org/10.1016/j.ejor.2021.06.061.
+%Type = Article
+\bibitem[{Roberti and Ruthmair(2021)}]{art:Roberti2021}
+Roberti, R., Ruthmair, M., 2021.
+\newblock Exact methods for the traveling salesman problem with drone.
+\newblock \textit{Transportation Science} 55, 315--335.
+%Type = Article
+\bibitem[{Rojas~Viloria et~al.(2021)Rojas~Viloria, Solano-Charris,
+  Muñoz-Villamizar and Montoya-Torres}]{art:Rojas2020}
+Rojas~Viloria, D., Solano-Charris, E.L., Muñoz-Villamizar, A., Montoya-Torres,
+  J.R., 2021.
+\newblock Unmanned aerial vehicles/drones in vehicle routing problems: a
+  literature review.
+\newblock \textit{International Transactions in Operational Research} 28, 4,
+  1626--1657.
+\newblock \eprint{https://onlinelibrary.wiley.com/doi/pdf/10.1111/itor.12783}.
+%Type = Article
+\bibitem[{Tokekar et~al.(2016)Tokekar, Hook, Mulla and Isler}]{art:Tokekar2016}
+Tokekar, P., Hook, J.V., Mulla, D., Isler, V., 2016.
+\newblock {Sensor Planning for a Symbiotic UAV and UGV System for Precision
+  Agriculture}.
+\newblock \textit{IEEE Transactions on Robotics} 32, 6, 1498--1511.
+%Type = Article
+\bibitem[{Trotta et~al.(2018)Trotta, Andreagiovanni, {Di Felice}, Natalizio and
+  Chowdhury}]{art:Trotta2018}
+Trotta, A., Andreagiovanni, F.D., {Di Felice}, M., Natalizio, E., Chowdhury,
+  K.R., 2018.
+\newblock {When UAVs Ride A Bus: Towards Energy-efficient City-scale Video
+  Surveillance}.
+\newblock \textit{Proceedings - IEEE INFOCOM} 2018-April, 1043--1051.
+%Type = Article
+\bibitem[{Vidal et~al.(2020)Vidal, Laporte and Matl}]{art:VIDAL}
+Vidal, T., Laporte, G., Matl, P., 2020.
+\newblock A concise guide to existing and emerging vehicle routing problem
+  variants.
+\newblock \textit{European Journal of Operational Research} 286, 2, 401--416.
+%Type = Article
+\bibitem[{Wang et~al.(2022)Wang, Pesch, Kress, Fridman and Boysen}]{art:WANG}
+Wang, K., Pesch, E., Kress, D., Fridman, I., Boysen, N., 2022.
+\newblock The piggyback transportation problem: Transporting drones launched
+  from a flying warehouse.
+\newblock \textit{European Journal of Operational Research} 296, 2, 504--519.
+%Type = Article
+\bibitem[{Wen et~al.(2016)Wen, Zhang and Wong}]{art:Wen2016}
+Wen, T., Zhang, Z., Wong, K.K.L., 2016.
+\newblock {Multi-objective algorithm for blood supply via unmanned aerial
+  vehicles to the wounded in an emergency situation}.
+\newblock \textit{PLoS ONE} 11, 5.
+
+\end{thebibliography}

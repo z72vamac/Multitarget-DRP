@@ -1,0 +1,202 @@
+# Este documento es para definir funciones que se utilizan en varios ficheros.
+
+import numpy as np
+import gurobipy as gp
+from gurobipy import GRB
+from entorno import Elipse, Poligono, Poligonal
+from estimacion_M import estima_BigM_local
+
+def path2matrix(path):
+    "Toma un camino y lo devuelve como matriz de adyacencia"
+    m = len(path)
+    zcc = np.zeros([m, m])
+    for i in range(m-1):
+        zcc[path[i]][path[i+1]]=1
+    zcc[path[m-1]][path[0]] = 1
+    return zcc
+
+def matrix2path(matrix):
+    " Toma una matriz y lo devuelve como camino "
+    matrix = np.array(matrix, int)
+    ind = 0
+    path = []
+    while ind not in path:
+        path.append(ind)
+        lista = matrix[ind]
+        counter = 0
+        for i in lista:
+            if i == 1:
+                ind = counter
+                break
+            counter += 1
+    return path
+
+
+def subtour(edges):
+    "Genera un subtour de una lista de aristas"
+    m = len(edges)
+    unvisited = list(range(m))
+    cycle = range(m+1)  # initial length has 1 more city
+    while unvisited:  # true if list is non-empty
+        thiscycle = []
+        neighbors = unvisited
+        while neighbors:
+            current = neighbors[0]
+            thiscycle.append(current)
+            unvisited.remove(current)
+            neighbors = [j for i, j in edges.select(current, '*')
+                         if j in unvisited]
+        if len(cycle) > len(thiscycle):
+            cycle = thiscycle
+    return cycle
+
+def subtours(edges):
+    "Genera un subtour de una lista de aristas"
+    m = len(edges)
+    unvisited = list(range(m))
+    cycles = []  # initial length has 1 more city
+    while unvisited:  # true if list is non-empty
+        thiscycle = []
+        neighbors = unvisited
+        while neighbors:
+            current = neighbors[0]
+            thiscycle.append(current)
+            unvisited.remove(current)
+            neighbors = [j for i, j in edges.select(current, '*')
+                         if j in unvisited]
+        # if len(cycle) > len(thiscycle):
+        cycles.append(thiscycle)
+    return cycles
+
+
+def subtour_s(edges):
+    m = int(len(edges)/2)
+    unvisited = list(range(m))
+    cycle = list(range(m)) # Dummy - guaranteed to be replaced
+    while unvisited:  # true if list is non-empty
+        thiscycle = []
+        neighbors = unvisited
+        while neighbors:
+            current = neighbors[0]
+            thiscycle.append(current)
+            unvisited.remove(current)
+            neighbors = [j for i, j in edges.select(current, '*')
+                         if j in unvisited]
+        if len(thiscycle) <= len(cycle):
+            cycle = thiscycle # New shortest subtour
+    return cycle
+
+def min_dist(comp0, comp1):
+
+        MODEL = gp.Model('minima_distancia')
+
+        x0 = MODEL.addVars(2, vtype = GRB.CONTINUOUS, name = 'x0')
+        x1 = MODEL.addVars(2, vtype = GRB.CONTINUOUS, name = 'x1')
+
+        if type(comp0) is Poligono:
+            mu0 = MODEL.addVars(comp0.num_puntos, vtype = GRB.CONTINUOUS, lb = 0.0, ub = 1.0, name = 'mu0')
+
+        if type(comp0) is Poligonal:
+            landa_index = []
+            sublanda_index = []
+            s_index = []
+
+            # landa de la variable de entrada en la poligonal c
+            landa_index.append(0)
+            # landa de la variable de salida en la poligonal c
+            for segm in range(comp0.num_segmentos):
+                s_index.append(segm)
+            for punto in range(comp0.num_puntos):
+                sublanda_index.append(punto)
+
+            landa0 = MODEL.addVar(vtype=GRB.CONTINUOUS, name='landa')
+            sublanda0 = MODEL.addVars(sublanda_index, vtype=GRB.CONTINUOUS,
+                                 lb=0.0, ub=1.0, name='sublanda')
+            s0 = MODEL.addVars(s_index, vtype=GRB.BINARY, name='s')
+
+        if type(comp1) is Poligono:
+            mu1 = MODEL.addVars(comp1.num_puntos, vtype = GRB.CONTINUOUS, lb = 0.0, ub = 1.0, name = 'mu1')
+
+        if type(comp1) is Poligonal:
+            landa_index = []
+            sublanda_index = []
+            s_index = []
+
+            # landa de la variable de salida en la poligonal c
+            for segm in range(comp1.num_segmentos):
+                s_index.append(segm)
+            for punto in range(comp1.num_puntos):
+                sublanda_index.append(punto)
+
+            landa1 = MODEL.addVar(vtype=GRB.CONTINUOUS, name='landa')
+            sublanda1 = MODEL.addVars(sublanda_index, vtype=GRB.CONTINUOUS,
+                                 lb=0.0, ub=1.0, name='sublanda')
+            s1 = MODEL.addVars(s_index, vtype=GRB.BINARY, name='s')
+
+        dif01 = MODEL.addVars(2, vtype = GRB.CONTINUOUS, name = 'dif01')
+        d01 = MODEL.addVar(vtype = GRB.CONTINUOUS, lb = 0.0, name = 'd01')
+
+        MODEL.update()
+
+        MODEL.addConstr(dif01[0] >=  x0[0] - x1[0])
+        MODEL.addConstr(dif01[0] >= -x0[0] + x1[0])
+        MODEL.addConstr(dif01[1] >=  x0[1] - x1[1])
+        MODEL.addConstr(dif01[1] >= -x0[1] + x1[1])
+        MODEL.addConstr(dif01[0] * dif01[0] + dif01[1] * dif01[1] <= d01 * d01)
+        # MODEL.addConstr(d01 <= estima_BigM_local(comp0, comp1))
+
+        if type(comp0) is Poligono:
+            MODEL.addConstr(gp.quicksum(mu0[j] for j in range(comp0.num_puntos)) == 1, name = 'envConv')
+            for j in range(2):
+                MODEL.addConstr(x0[j] == gp.quicksum(mu0[v]*comp0.V[v][j] for v in range(comp0.num_puntos)), name = 'inP1')
+        if type(comp0) is Elipse:
+            MODEL.addConstr(comp0.P[0, 0] * x0[0] * x0[0] + comp0.P[1, 0] * x0[0] * x0[1] +
+                            comp0.P[0, 1] * x0[0] * x0[1] + comp0.P[1, 1] * x0[1] * x0[1] +
+                            comp0.q[0] * x0[0] + comp0.q[1] * x0[1] + comp0.r <= 0, name='inC1')
+        if type(comp0) is Poligonal:
+            for i in range(2):
+                for punto in range(1, comp0.num_puntos):
+                    MODEL.addConstr(landa0 - punto >= sublanda0[punto] - comp0.num_puntos * (1 - s0[punto - 1]))
+                    MODEL.addConstr(landa0 - punto <= sublanda0[punto] + comp0.num_puntos * (1 - s0[punto - 1]))
+                MODEL.addConstr(sublanda0[0] <= s0[0])
+                MODEL.addConstr(sublanda0[comp0.num_puntos - 1] <= s0[comp0.num_puntos - 2])
+                for punto in range(1, comp0.num_puntos - 1):
+                    MODEL.addConstr(sublanda0[punto] <= s0[punto - 1] + s0[punto])
+                MODEL.addConstr(s0.sum('*') == 1)
+                MODEL.addConstr(sublanda0.sum('*') == 1)
+                for j in range(2):
+                    MODEL.addConstr(x0[j] == gp.quicksum(sublanda0[punto] * comp0.V[punto][j] for punto in range(comp0.num_puntos)), name='seg1')
+        if type(comp1) is Poligono:
+            MODEL.addConstr(gp.quicksum(mu1[j] for j in range(comp1.num_puntos)) == 1, name = 'envConv')
+            for j in range(2):
+                MODEL.addConstr(x1[j] == gp.quicksum(mu1[v]*comp1.V[v][j] for v in range(comp1.num_puntos)), name = 'inP1')
+        if type(comp1) is Elipse:
+            MODEL.addConstr(comp1.P[0, 0] * x1[0] * x1[0] + comp1.P[1, 0] * x1[0] * x1[1] +
+                            comp1.P[0, 1] * x1[0] * x1[1] + comp1.P[1, 1] * x1[1] * x1[1] +
+                            comp1.q[0] * x1[0] + comp1.q[1] * x1[1] + comp1.r <= 0, name='inC1')
+        if type(comp1) is Poligonal:
+            for i in range(2):
+                for punto in range(1, comp1.num_puntos):
+                    MODEL.addConstr(landa1 - punto >= sublanda1[punto] - comp1.num_puntos * (1 - s1[punto - 1]))
+                    MODEL.addConstr(landa1 - punto <= sublanda1[punto] + comp1.num_puntos * (1 - s1[punto - 1]))
+                MODEL.addConstr(sublanda1[0] <= s1[0])
+                MODEL.addConstr(sublanda1[comp1.num_puntos - 1] <= s1[comp1.num_puntos - 2])
+                for punto in range(1, comp1.num_puntos - 1):
+                    MODEL.addConstr(sublanda1[punto] <= s1[punto - 1] + s1[punto])
+                MODEL.addConstr(s1.sum('*') == 1)
+                MODEL.addConstr(sublanda1.sum('*') == 1)
+                for j in range(2):
+                    MODEL.addConstr(x1[j] == gp.quicksum(sublanda1[punto] * comp1.V[punto][j] for punto in range(comp1.num_puntos)), name='seg1')
+
+        MODEL.setParam('OutputFlag', 1)
+
+        MODEL.setObjective(d01, GRB.MINIMIZE)
+        MODEL.Params.FeasibilityTol = 1e-2
+        MODEL.update()
+
+        MODEL.optimize()
+
+        x_0 = [x0[0].X, x0[1].X]
+        x_1 = [x1[0].X, x1[1].X]
+
+        return d01.X, x_0, x_1

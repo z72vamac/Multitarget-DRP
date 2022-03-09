@@ -1,0 +1,30 @@
+\section{A Matheuristic for the \AMD}\label{Math}
+\noindent
+This section is devoted to present our matheuristic approach to provide good feasible solutions of the \AMD. Our motivation comes from the fact that the exact method based on the mathematical programming formulation presented in the previous section can be highly time demanding. Alternatively, the matheuristic provides good quality solution in limited computing times.\\
+\noindent
+
+Assuming that the drone has enough endurance to visit every target, the basic idea of the algorithm is to associate each target to one operation by solving a crossing postman problem with neighbors  (XPPN) (see \cite{Puerto2021}) for the targets including $orig$ and $dest$. The motivation of this approach comes from the results in \cite{Puerto2021} which show that the XPPN is easily solvable for medium-size instances provided that the neighbors are points or polygonal chains. 
+In the following, we present the pseudo-code of this algorithm:
+
+
+
+\begin{itemize} 
+\item[STEP 1] (Order of visit the targets)\\
+Compute the order of visit by solving the XPPN for the targets of the problem including $orig$ as the first point in the tour and $dest$ as the last one and associate each target $t\in\mathcal T$ to one operation $o\in\mathcal O$ in the given order.
+\item [STEP 2] (Solution of the \AMD\space model by fixing an initial partial solution)\\
+Set the values of the binary variables $u^{to}$, $v^{to}$, $\delta^{to}$ and $y^{tt'o}$ provided by the solution of STEP 1 and solve the resulting \AMD\space model to obtain a complete feasible solution.
+\end{itemize}
+
+%}
+
+It is possible to refine the previous algorithm, by slightly modifying STEP 2. Indeed, after STEP 1, starting from the first visited target, according with the order provided by the XPPN solution, we can iteratively add the next target to the same operation, if the drone endurance allows it. In this way the number of operations can be reduced and a better initial partial solution can be provided to start STEP 2.
+
+
+Figure \ref{fig:Fig7} shows the solution obtained, by means of the matheuristic, for the same example of Figure \ref{fig:Fig1}. In particular, the upper subfigure reports the solution after STEP 2 in its original form. We can observe that the solution consists in the mothership tour represented in blue and in four operations of the drone. Indeed, the drone first visits the 50\% of the target with label 4 ($u^{41}=v^{41}=1$), then flies to meet the mothership at the retrieve point $x_R^1$ and from there starts its second operation to visit a 50\% of the target with label 3 ($u^{32}=v^{32}=1$). After that, the drone flies to the retrieve point $x_R^2$, it visits another 50\% of the target with label 2 and then, from the launch point $x_L^4$ it starts its last operation to visit also another 50\% of the the target with label 1 ($u^{14}=v^{14}=1$). Then, it flies to the last retrieve point $x_R^4$ and moves to the destination point together with the mothership.
+In the lower subfigure of Figure \ref{fig:Fig7} we can observe the solution obtained with the modified version of STEP 2. Differently from the upper one, the number of drone operations is equal to two. Indeed, thanks to the refinement of STEP 2, the drone endurance permits to visit the two targets with label 4 and 3 in the first operation  ($u^{41}=v^{31}=1$ and $y^{431}=1$). Similarly, the drone can also visit two targets, namely 2 and 1, in its second operation ($u^{22}=v^{12}=1$ and $y^{212}=1$).\\ 
+In terms of objective function values, in this example, the refinement of STEP 2 does not provide an improved solution. Indeed, its value is equal to 888.01 without refinement and equal to 920.4 with the refinement of STEP 2. 
+However, the length of the mothership tour, when STEP 2 is implemented in its original form, is equal to 189.72, while with the refinement of STEP 2 it is equal to 180.39. 
+Moreover, we point out that the total time associated with the mothership tour is shorter in the solution without refinement of STEP 2. This is due to the different number of stops performed by the mothership in the two solutions. Indeed, in the solution obtained by the refinement, the number of mothership stops is 4 instead of 5 and, in some of them, the mothership waits for the drone. Summing up, in this example the refinement of STEP 2 generates a solution with a shorter tour of the mothership but with a weighted sum of the distances travelled by both, drone and mothership, that is worse than the one obtained without refinement. In general, depending on the instance and the weighting factor of the two terms in the objective function, the refinement of STEP 2 can provide better solutions. For this reason in the implementation we compared the solutions obtained with and without this refinement, and we select the best one to be provided as initial solution for the exact model.
+
+
+\input{heuristic_figure1}

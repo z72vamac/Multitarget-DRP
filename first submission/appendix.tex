@@ -1,0 +1,31 @@
+\section*{Appendix: The special case of polygonal chains with equal-length segments\label{appendix}}
+
+This appendix shows a simplification of the constraints modelling traversing a given percentage of the polygonal targets provided that all their segments are of the same length. In that case, we can model the entry point $R^p$ and the exit point $L^p$ associated with the polygonal chain $p\in\mathcal P$ by means of a parameter $\rho^p\in[1, |V_p|]$ (resp. $\lambda^p\in[1, |V_p|]$) that determines the absolute position in $p$. 
+
+To compute the value of these parameters, we can link them with the variables that model the location of the points inside the polygonal by including the following inequalities for each $s_p\in S_p$:
+\begin{align*}
+    \rho^p - s_p &\geq \gamma_R^{s_p} - |V_p|(1-\mu_R^{s_p}),\\
+    \rho^p - s_p &\leq \gamma_R^{s_p} + |V_p|(1-\mu_R^{s_p}),\\
+    \lambda^p - s_p &\geq \gamma_L^{s_p} - |V_p|(1-\mu_L^{s_p}),\\
+    \lambda^p - s_p &\leq \gamma_L^{s_p} + |V_p|(1-\mu_L^{s_p}).
+\end{align*}
+
+The first and second inequalities determine the upper and lower limits for the parameterization of each segment of $p$. If $\mu_R^{s_p}=0$ the inequalities are always fulfilled and there is no entry point in the $s_p$-th segment of the polygonal. Conversely, if $\mu_R^{s_p}=1$ then $\rho^p=\gamma_R^{s_p}+s_p$ meaning that the corresponding entry or exit point is in the $s_p$-th segment of the polygonal and its value is equals to the number of segments plus the part of the segment $s_p$ that has been already traversed. The same idea is applied in the third and fourth inequalities for the $\lambda^p$ parameter.
+
+Finally, we can model the condition of traversing a percentage $\alpha^p$ of the polygonal $p$ by the standard trick for the absolute value constraint:
+
+\begin{equation}\label{eq:alpha-p}\tag{$\alpha-\mathcal P$}
+ |\rho^{p}-\lambda^{p}|\geq \alpha^{p} |S_p| \Longleftrightarrow
+ \left\{
+ \begin{array}{ccl}
+  \rho^{p} - \lambda^{p} & = & \nu_\text{max}^{p} - \nu_\text{min}^{p} \\
+  \nu_\text{max}^{p} & \leq & 1-{\text{entry}^{p}}, \\
+  \nu_\text{min}^{p} & \leq & {  \text{entry}^{p}}, \\
+  \nu_\text{max}^{p} + \nu_\text{min}^{p} & \geq & \alpha^{p} |S_p|. \\
+ \end{array}
+ \right.
+\end{equation}
+
+Here $\nu_\text{max}^p$ and $\nu_\text{min}^p$ are auxiliary variables used for linearizing the absolute value and the binary variable $\text{entry}^p$ represents the traveling direction in the polygonal chain $p$.
+
+

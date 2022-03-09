@@ -1,0 +1,89 @@
+\pgfplotsset{compat=1.15}
+\usetikzlibrary{arrows}
+\usetikzlibrary{shapes.misc}
+\tikzset{
+    ultra thin/.style= {line width=0.1pt},
+    very thin/.style=  {line width=0.2pt},
+    thin/.style=       {line width=0.4pt},% thin is the default
+    semithick/.style=  {line width=0.6pt},
+    thick/.style=      {line width=0.8pt},
+    very thick/.style= {line width=1.2pt},
+    ultra thick/.style={line width=1.6pt}
+}
+\tikzset{cross/.style={cross out, draw=#1, minimum size = 7pt, inner sep=0pt, outer sep=0pt},
+%default radius will be 1pt. 
+cross/.default={1pt}}
+\definecolor{ffqqqq}{rgb}{1,0,0}
+\definecolor{zzttqq}{rgb}{0.6,0.2,0}
+\definecolor{qqqqff}{rgb}{0,0,1}
+\definecolor{zzttff}{rgb}{0.6,0.2,1}
+\definecolor{qqwuqq}{rgb}{0,0.39215686274509803,0}
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm, scale = 0.8]
+\begin{axis}[
+x=0.2cm,y=0.2cm,
+axis lines=middle,
+ymajorgrids=true,
+xmajorgrids=true,
+xmin=-10,
+xmax=70,
+ymin=50,
+ymax=110,
+xtick={0,10,...,100},
+ytick={0,10,...,100},]
+\clip(-3.457463206471539,48.09258561348164) rectangle (119.37411567145851,119.01558739538173);
+\draw [line width=1pt] (10,90)-- (15,80)-- (20,90)-- (25,80)-- (30,90);
+\draw [line width=1pt] (35,75)-- (35,65);
+\draw [line width=1pt] (35,65)-- (45,65);
+\draw [line width=1pt] (60,40)-- (60,55)-- (70,55)-- (70.1475256539027,48)-- (60,48)-- (70,40);
+\draw [line width=1pt] (80,35)-- (80,20);
+\draw [line width=5.2pt] (80,20)-- (90,24);
+\draw [line width=1pt] (90,24)-- (90,32);
+\draw [line width=1pt] (90,32)-- (80,35);
+\draw (-0.007588685406227546,1.3187054790384702) node[anchor=north west] {$\bm{orig}$};
+\draw (100.0387724254878,101.2848369499067) node[anchor=north west] {$\bm{dest}$};
+\draw [color=qqqqff](47.284913608888765,67.82907705957601) node[anchor=north west] {\bm{$x_R^2=x_L^3$}};
+\draw [color=qqqqff](85.83812614110269,99.27909594928737) node[anchor=north west] {\bm{$x_R^3$}};
+\draw [color=qqwuqq](45,64.18149893875847) node[anchor=north west] {\bm{$R^3$}};
+\draw (45, 65) node[cross, very thick, color=qqwuqq] {};
+\draw [color=zzttff](30.9238080444541,74.96951502178088) node[anchor=north west] {\bm{$L^3$}};
+\draw (35, 75) node[cross, very thick, color=zzttff] {};
+\draw [color=qqwuqq](15.637191119424836,91.1759023067852) node[anchor=north west] {\bm{$R^4$}};
+\draw (20, 90) node[cross, very thick, color=qqwuqq] {};
+\draw [color=zzttff](31.12151164420635,89.37360590653746) node[anchor=north west] {\bm{$L^4$}};
+\draw (30, 90) node[cross, very thick, color=zzttff] {};
+\draw [line width=1pt,color=zzttqq] (70,40)-- (70,40);
+\draw [line width=1pt,color=ffqqqq] (45,65)-- (45,75);
+\draw [line width=1pt,color=ffqqqq] (45,75)-- (35,75);
+\draw [line width=1pt,dashed,color=ffqqqq] (35,75)-- (20,90);
+\draw [line width=1pt,color=ffqqqq] (20,90)-- (25,80);
+\draw [line width=1pt,color=ffqqqq] (25,80)-- (30,90);
+\draw [line width=1pt,dashed,color=ffqqqq] (30,90)-- (85.859,97.978);
+\draw [->,line width=1pt,dashed,color=ffqqqq] (35,75) -- (27.5,82.5);
+\draw [->,line width=1pt,dashed,color=ffqqqq] (30,90) -- (57.9295,93.989);
+\draw [line width=1pt,color=qqqqff] (45,65)-- (85.859,97.978);
+\draw [color=zzttff](36.293452925494634,79.90650838361415) node[anchor=north west] {\bm{$\mu_L^{4_3}=1$}};
+\draw [color=qqwuqq](15.396502199350513,95.98968070827164) node[anchor=north west] {\bm{$\mu_R^{2_4}=1$}};
+\draw (36.614371485593736,72.24744826155792) node[anchor=north west] {\bm{$z_3^{24}=1$}};
+\draw [color=qqwuqq](36.293452925494634,64.9837953390062) node[anchor=north west] {\bm{$\mu_R^{2_3}=1$}};
+\draw [color=zzttff](25.184518282373023,96.0699103482964) node[anchor=north west] {\bm{$\mu_L^{4_4}=1$}};
+\draw (16.0,81.98673802363892) node[anchor=north west] {\bm{$z_4^{24}=1$}};
+\draw [color=qqqqff](45.80353576874012,74.49387818225158) node[anchor=north west] {\bm{$u^{33}=1$}};
+\draw [color=qqqqff](35.37368256551941,96.55128818844506) node[anchor=north west] {\bm{$v^{43}=1$}};
+\draw [color=ffqqqq](30.522659844330224,84.23890894495193) node[anchor=north west] {\bm{$y^{343}=1$}};
+\begin{scriptsize}
+\draw [fill=black] (0,0) ++(-4.5pt,0 pt) -- ++(4.5pt,4.5pt)--++(4.5pt,-4.5pt)--++(-4.5pt,-4.5pt)--++(-4.5pt,4.5pt);
+\draw [fill=black] (100,100) ++(-4.5pt,0 pt) -- ++(4.5pt,4.5pt)--++(4.5pt,-4.5pt)--++(-4.5pt,-4.5pt)--++(-4.5pt,4.5pt);
+% \draw [color=qqwuqq] (20,90)-- ++(-4.5pt,-4.5pt) -- ++(9pt,9pt) ++(-9pt,0) -- ++(9pt,-9pt);
+% \draw [color=zzttff] (30,90)-- ++(-4.5pt,-4.5pt) -- ++(9pt,9pt) ++(-9pt,0) -- ++(9pt,-9pt);
+% \draw [color=zzttff] (35,75)-- ++(-4.5pt,-4.5pt) -- ++(9pt,9pt) ++(-9pt,0) -- ++(9pt,-9pt);
+% \draw [color=qqwuqq] (45,65)-- ++(-4.5pt,-4.5pt) -- ++(9pt,9pt) ++(-9pt,0) -- ++(9pt,-9pt);
+\draw [fill=qqqqff] (45,65) circle (3pt);
+\draw [fill=qqqqff] (85.859,97.978) circle (3pt);
+\end{scriptsize}
+\end{axis}
+\end{tikzpicture}
+\caption{Binary decision variables associated to each target}
+\label{fig:Fig3}
+\end{figure}

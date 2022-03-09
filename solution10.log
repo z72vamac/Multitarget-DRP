@@ -1,0 +1,138 @@
+
+Gurobi 9.1.1 (win64) logging started Fri Aug  6 17:44:48 2021
+
+Changed value of parameter LogFile to solution10.log
+   Prev:   Default: 
+Gurobi Optimizer version 9.1.1 build v9.1.1rc0 (win64)
+Thread count: 6 physical cores, 12 logical processors, using up to 5 threads
+Optimize a model with 1416 rows, 1022 columns and 4979 nonzeros
+Model fingerprint: 0x6d28b6be
+Model has 163 quadratic constraints
+Variable types: 807 continuous, 215 integer (215 binary)
+Coefficient statistics:
+  Matrix range     [3e-01, 9e+01]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 3e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [2e-01, 8e+01]
+
+User MIP start produced solution with objective 495.934 (0.18s)
+Loaded user MIP start with objective 495.934
+
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.19 seconds
+Thread count was 1 (of 12 available processors)
+
+Solution count 1: 495.934 
+
+Solve interrupted
+Best objective 4.959343008624e+02, best bound -, gap -
+
+User-callback calls 89, time in user-callback 0.00 sec
+Warning: Q constraint 0 doesn't have a name
+Warning: linear constraint 1243 and linear constraint 1276 have the same name "u0"
+
+Gurobi 9.1.1 (win64) logging started Fri Aug  6 17:44:48 2021
+
+Changed value of parameter LogFile to solution10.log
+   Prev:   Default: 
+Gurobi Optimizer version 9.1.1 build v9.1.1rc0 (win64)
+Thread count: 6 physical cores, 12 logical processors, using up to 5 threads
+Optimize a model with 1416 rows, 1022 columns and 4979 nonzeros
+Model fingerprint: 0x0f2c2708
+Model has 163 quadratic constraints
+Variable types: 807 continuous, 215 integer (215 binary)
+Coefficient statistics:
+  Matrix range     [3e-01, 9e+01]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 3e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [2e-01, 8e+01]
+
+User MIP start produced solution with objective 520.311 (0.10s)
+Loaded user MIP start with objective 520.311
+
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.10 seconds
+Thread count was 1 (of 12 available processors)
+
+Solution count 1: 520.311 
+
+Solve interrupted
+Best objective 5.203110735571e+02, best bound -, gap -
+
+User-callback calls 39, time in user-callback 0.00 sec
+Warning: Q constraint 0 doesn't have a name
+Warning: linear constraint 1243 and linear constraint 1276 have the same name "u0"
+
+Gurobi 9.1.1 (win64) logging started Fri Aug  6 17:44:49 2021
+
+Changed value of parameter LogFile to solution10.log
+   Prev:   Default: 
+Gurobi Optimizer version 9.1.1 build v9.1.1rc0 (win64)
+Thread count: 6 physical cores, 12 logical processors, using up to 5 threads
+Optimize a model with 1416 rows, 1022 columns and 4979 nonzeros
+Model fingerprint: 0xf483ba76
+Model has 163 quadratic constraints
+Variable types: 807 continuous, 215 integer (215 binary)
+Coefficient statistics:
+  Matrix range     [3e-01, 9e+01]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 3e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [2e-01, 8e+01]
+
+User MIP start produced solution with objective 520.311 (0.08s)
+Loaded user MIP start with objective 520.311
+
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.09 seconds
+Thread count was 1 (of 12 available processors)
+
+Solution count 1: 520.311 
+
+Solve interrupted
+Warning: max constraint violation (1.4966e-06) exceeds tolerance
+Best objective 5.203111366466e+02, best bound -, gap -
+
+User-callback calls 39, time in user-callback 0.00 sec
+Warning: Q constraint 0 doesn't have a name
+Warning: linear constraint 1243 and linear constraint 1276 have the same name "u0"
+
+Gurobi 9.1.1 (win64) logging started Fri Aug  6 17:44:49 2021
+
+Changed value of parameter LogFile to solution10.log
+   Prev:   Default: 
+Gurobi Optimizer version 9.1.1 build v9.1.1rc0 (win64)
+Thread count: 6 physical cores, 12 logical processors, using up to 5 threads
+Optimize a model with 1416 rows, 1022 columns and 4979 nonzeros
+Model fingerprint: 0x52a6e76f
+Model has 163 quadratic constraints
+Variable types: 807 continuous, 215 integer (215 binary)
+Coefficient statistics:
+  Matrix range     [3e-01, 9e+01]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 3e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [2e-01, 8e+01]
+
+User MIP start produced solution with objective 495.964 (0.17s)
+Loaded user MIP start with objective 495.964
+
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.17 seconds
+Thread count was 1 (of 12 available processors)
+
+Solution count 1: 495.964 
+
+Solve interrupted
+Warning: max constraint violation (1.0296e-06) exceeds tolerance
+Best objective 4.959643534343e+02, best bound -, gap -
+
+User-callback calls 84, time in user-callback 0.00 sec
+Warning: Q constraint 0 doesn't have a name
+Warning: linear constraint 1243 and linear constraint 1276 have the same name "u0"

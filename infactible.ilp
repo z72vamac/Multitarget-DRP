@@ -1,0 +1,14 @@
+\ Model klmedian-continuous_copy
+\ LP format - for model browsing. Use MPS format to capture full model detail.
+Minimize
+ 
+Subject To
+ R19: mugt[4,2] >= 0.5
+ R23: vgt[4,3] >= 0.5
+ R47: mugt[4,1] + mugt[4,2] + mugt[4,3] + mugt[4,4] = 1
+ R78: mugt[4,3] - yggt[4,1,3] - yggt[4,2,3] - yggt[4,3,3] - vgt[4,3] = 0
+Bounds
+Binaries
+ mugt[4,1] mugt[4,2] mugt[4,3] mugt[4,4] yggt[4,1,3] yggt[4,2,3]
+ yggt[4,3,3] vgt[4,3]
+End

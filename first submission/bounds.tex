@@ -1,0 +1,147 @@
+\section{Strengthening the formulation of \AMD}\label{bounds}
+
+\subsection{Pre-processing} \label{sec:preprocessing}
+In this subsection we explore the nature of the problem to fix a priori some variables and to increase the efficiency of the model. Particularly, the following proposition allows to fix $y^{tt'o}$ binary variables to zero.
+
+\begin{proposition}\label{prop:preprocessing}
+Let $t, t'\in\mathcal T$ be two targets. Let $d_{\text{min}}(t, t')$ denote the minimum distance between them and $length(t)$, the length of the target $t$. If $t, t'$ verify that
+\begin{equation}\label{eq:ytto}
+    \alpha^t\,length(t) + d_{\text{min}}(t, t')  + \alpha^{t'}\,length(t') > \frac{v_D}{v_M}\,N, 
+\end{equation}
+then the drone cannot visit in  a single operation $t$ and $t'$.
+\end{proposition}
+
+\begin{proof}
+Let assume that the drone can go from $t$ to $t'$ in the operation $o$. Then it must satisfy \eqref{CAP} and \eqref{DCW} constraints:
+
+$$
+\sum_{t\in \mathcal T} u^{to}d_L^{to} + \sum_{t, t'\in \mathcal T}y^{tt'o}d_{\text{out}}^{tt'} + \sum_{t\in\mathcal T} \delta^{to}d_{\text{in}}^{t} + \sum_{t\in \mathcal T} v^{to}d_R^{to} \leq \frac{v_D}{v_M}\,N.
+$$
+
+Since $d_L^{to}, d_R^{to}\geq 0$, the left hand side of this inequality can be  bounded from below by the left hand side of \eqref{eq:ytto}:
+
+$$
+\alpha^t\,length(t) + d_{\text{min}}(t, t')  + \alpha^{t'}\,length(t') \leq \sum_{t\in \mathcal T} u^{to}d_L^{to} + \sum_{t, t'\in \mathcal T}y^{tt'o}d_{\text{out}}^{tt'} + \sum_{t\in\mathcal T} \delta^{to}d_{\text{in}}^{t} + \sum_{t\in \mathcal T} v^{to}d_R^{to},
+$$
+
+which is impossible because each side is lower (resp. upper) bounded by $\frac{v_D}{v_M}\,N$. 
+
+% Note that the distance that the drone must travel to visit $t$ and $t'$ in the same operation can be lower bounded by the left side of the inequation \eqref{eq:ytto}.
+\end{proof}
+
+% Since there exists the \eqref{CAP} constraint and the drone endurance is limited, some $y^{tt'o}$ must be zero, i.e., the drone can not go from the target $t$ to the target $t'$ for the operation 
+
+
+
+\subsection{Valid inequalities for the \AMD} 
+
+In this subsection we introduce some valid inequalities for \AMD \ that strengthen the formulation presented in the Subsection \ref{Form}. In addition, the constraint that coordinates the movement of the drone and the mothership, namely \eqref{DCW}, and the objective function of the model hold products of binary and continuous variables. Each of these products generates big-M constants that must be tightened, when they are linearized. The present section provides some bounds for these constants.
+
+For this problem, we are assuming that the drone  endurance suffices to visit more than one target in the same operation because, otherwise, the problem is similar to (AMDRPG) that has  been already considered in \cite{art:Amorosi2021}. Hence, provided that there exists an operation in which the drone visits two or more targets, the mothership does not need to perform $|\mathcal O|$ different operations. This idea can be used to compactify all the operations made by the drone on the first operations, avoiding void tasks in $\mathcal O$.
+\noindent
+
+Let $\beta^o$ be a binary variable that attains the value one if the entire set of targets is visited when the operation $o$ starts, and zero, otherwise. Observe that, if the drone has traversed all the targets before the operation $o$ then they are also traversed before to start the operation $o+1$. Therefore, $\beta$ variables must fulfill the following constraints:
+
+\begin{equation}\tag{Monotonicity}\label{eq:Monotonicity}
+\beta^{o} \leq \beta^{o+1}, \mbox{ for all } o=1,\ldots, |\mathcal{O}|-1.
+\end{equation}
+Let $k^o$ represent the number of targets that are visited at the operation $o$. $\delta$ variables can be used to compute this number because $\delta^{to}$ attains the value one when the target $t$ is visited in the operation $o$. Thus:
+
+$$k^o=\sum_{t\in\mathcal T} \delta^{to}.$$
+
+Thus, if $\beta^o$ is one, the full set $\mathcal T$ must have been visited before the operation $o$:
+
+\begin{equation}\tag{VI-1}\label{eq:VI-1}
+\sum_{o'=1}^{o-1} k^{o'} \geq |\mathcal T|\beta^o,
+\end{equation}
+where $|\mathcal T|$ stands for the cardinality of $\mathcal T$.
+
+To reduce the space of feasible solutions, it is possible to assume, without loss of generality, that it is not allowed to have an operation $o$ without any visit if the drone still has to visit some targets. To enforce that, we can set the following constraints:
+
+\begin{equation}\tag{VI-2}\label{eq:VI-2}
+k^o \geq 1 - \beta^o.
+\end{equation}
+
+Following the idea given in the Proposition \ref{prop:preprocessing} of the previous subsection, we can set some valid inequalities that indicate that the drone cannot visit a subset $S\subset\mathcal{T}$ of targets because of the \eqref{CAP} constraint. Let $\mathcal S$ be the collection of subsets of $\mathcal T$ that do not verify \eqref{CAP}, then:
+
+% $$\mathcal S = \{S\subset \mathcal T: S \text{ does not verify \eqref{CAP}}\}$$
+\begin{equation}\tag{VI-3}\label{eq:VI-3}
+\sum_{t\in S} \delta^{to} \leq |S| - 1, \qquad\forall S\in \mathcal S, \quad\forall o\in\mathcal O.
+\end{equation}
+
+We can construct $\mathcal S$ by fixing the $\delta$ variables and partially solving \eqref{Multi-MDRP} for each subset of $\mathcal T$, which is a very expensive computation. However, it is sufficient to find minimal subsets by monotonicity.
+
+% In addition, it is also possible to reduce the symmetry. Since we are assuming that drones are indistinguishable, we can assume that given an arbitrary order on them, we always assign drones to operations in that given order. This assumption allows us to assign for an operation at the stage $t$ the first drone that is available, avoiding to consider the last ones, if they are not necessary. This consideration can be implemented with the following set of inequalities. For all $t\in\mathcal T$:
+% \medskip
+
+% % \noindent **** OJO :  Mas fuertes ************
+% \begin{equation}\tag{VI-3}\label{eq:VI-3}
+% \sum_{e_g\in \mathcal G} u^{e_gtd} \leq \sum_{e_g:g\in\mathcal G}u^{e_gtd-1}, \; \forall d=2,\ldots |\mathcal D|.      
+% \end{equation}
+% \begin{equation}\tag{VI-4}\label{eq:VI-4}
+% \sum_{e_g\in \mathcal G} v^{e_gtd} \leq \sum_{e_g:g\in\mathcal G}v^{e_gtd-1}, \; \forall d=2,\ldots |\mathcal D|.      
+% \end{equation}
+% % ****************************
+% % \CV{\begin{equation}\tag{VI-3}\label{eq:VI-3}
+% % u^{e_gtd_1} \leq \sum_{e_g:g\in\mathcal G}\sum_{t\in\mathcal T} u^{e_gtd_2},\quad d_1>d_2
+% % \end{equation}
+% % \begin{equation}\tag{VI-4}\label{eq:VI-4}
+% % v^{e_gtd_1} \leq \sum_{e_g:g\in\mathcal G}\sum_{t\in\mathcal T} v^{e_gtd_2},\quad d_1>d_2.
+% % \end{equation}
+
+% Hence, if the drone $d_1$ is assigned to the task $t$, every drone $d_2$ that is, for the launching order in $\mathcal D$, before than $d_1$, must perform the task $t$.
+
+% }
+´
+\bigskip
+
+The different models that we have proposed include in one way or another big-M constants. We have defined different big-M constants along this work. In order to strengthen the formulations we provide tight upper and lower bounds for those constants. 
+
+\subsubsection*{Big $M$ constants bounding the distance from the launching / rendezvous point on the path followed by the mothership to the rendezvous / launching point on the target $t\in \mathcal{T}$}
+%\CV{Quizás las M grandes se pueden estimar, discutir contigo}
+
+To linearize the first addend of the objective function in \AMD, we set the auxiliar non-negative continuous variables $q_L^{to}$ (resp. $q_R^{to}$) to model the product by inserting the following inequalities:
+\begin{align*}
+q_L^{to} & \geq m_L^{to} u^{to}, \\
+q_L^{to} & \leq d_L^{to} - M_L^{to}(1-u^{to}).
+\end{align*}
+The best upper bound $M_L^{to}$ or $M_R^{to}$ is the full diameter of the data, that is, the maximum distance between every pair of vertices of the targets in $\mathcal{T}$, i.e., every point that must be determined is inside the circle whose diametrically opposite points are explained below. 
+$$
+M_L^{to} = \max_{\{v, v'\in V\}} \|v - v'\| = M_R^{to}.
+$$
+
+Conversely, the minimum distance in this problem can be zero. This bound is attainable whenever the launching or the rendezvous points of the mothership is the same that the rendezvous or launching point on a given  target.
+
+\subsubsection*{Bounds on the big $M$ constants for the distance from the launching to the rendezvous points on the operation $o\in \mathcal{O}$.} When the drone travels in the operation $o$, it has to go from one target $t$ to another target $t'$ depending on the order given by $y^{tt'o}$. This fact produces another product of variables linearized by the following constraints:
+\begin{align*}
+q^{tt'o} & \geq m^{tt'} y^{tt'o}, \\
+q^{tt'o} & \leq d^{tt'}_{\text{out}} - M^{tt'}(1-y^{tt'o}).
+\end{align*}
+
+\noindent
+The evaluation of the bounds appearing in these constraints presents three cases depending on the structure of the targets:
+\begin{itemize}
+    \item If both targets $t, t'$ are points, then the distance is fixed and we can set
+    $$M^{tt'} = \|R^t - R^{t'}\| = m^{tt'}.$$
+    \item If one target $t$ is a point and the other $t'$ is a polygonal chain, we can compute the minimum distance as a minimum distance point-to-set problem:
+    \begin{align*}
+        m^{tt'} = \text{min} &\quad\|R^{t}- x\| \\
+                  \text{s.a.} &\quad x\text{ verifies }\eqref{P-C}.
+    \end{align*}
+    On the other hand, the maximum distance between these targets can be obtained by taking the maximum of the distance between the point $t$ and the breakpoints of the polygonal chain $t'$:
+    $$M^{tt'} = \max_{v\in V_{t'}}{\|v - R^t\|}.$$
+    \item If both targets $t, t'$ are polygonal chains, it is also possible compute exactly the minimum distance:
+    \begin{align*}
+        m^{tt'} = \text{min} &\quad\|x'- x\| \\
+                  \text{s.a.} &\quad x, x'\text{ verifies }\eqref{P-C}. 
+    \end{align*}
+    On the other hand, to estimate the maximum distance we can repeat the procedure described in the previous case, but now for each breakpoint of the first polygonal chain. Then, taking the maximum of the maximum distances for each breakpoint we get an upper bound for $M^{tt`}$:
+    $$M^{tt'} = \max_{v\in V_{t}, v'\in V_{t'}}{\|v - v'\|}.$$
+    
+\end{itemize}
+
+% Since we are taking into account the distance between two edges $e=(B^{e_g},C^{e_g}) \, e'=(B^{e^\prime_g},C^{e^\prime_g})\in E_g$, the maximum and minimum distances between their vertices give us the upper and lower bounds:
+% \begin{align*}
+% M^{e_g e^\prime_g} = & \max\{\|B^{e_g} - C^{e^\prime_g}\|, \|B^{e_g} - B^{e^\prime_g}\|, \|C^{e_g} - B^{e^\prime_g}\|, \|C^{e_g} - C^{j_g}\|\}, \\
+% m^{e_g e^\prime_g} = & \min\{\|B^{e_g} - C^{e^\prime_g}\|, \|B^{e_g} - B^{e^\prime_g}\|, \|C^{e_g} - B^{e^\prime_g}\|, \|C^{e_g} - C^{e^\prime_g}\|\}.
+% \end{align*}

@@ -1,0 +1,103 @@
+\pgfplotsset{compat=1.15}
+\usetikzlibrary{shapes.misc}
+\tikzset{
+    ultra thin/.style= {line width=0.1pt},
+    very thin/.style=  {line width=0.2pt},
+    thin/.style=       {line width=0.4pt},% thin is the default
+    semithick/.style=  {line width=0.6pt},
+    thick/.style=      {line width=0.8pt},
+    very thick/.style= {line width=1.2pt},
+    ultra thick/.style={line width=1.6pt}
+}
+\tikzset{cross/.style={cross out, draw=red, minimum size = 7pt, inner sep=0pt, outer sep=0pt},
+%default radius will be 1pt. 
+cross/.default={1pt}}
+\begin{figure}
+\centering
+\definecolor{zzttqq}{rgb}{0.6,0.2,0}
+\definecolor{qqqqff}{rgb}{0,0,1}
+\definecolor{ffqqqq}{rgb}{1,0,0}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\begin{axis}[
+x=0.1cm,y=0.1cm,
+axis lines=middle,
+ymajorgrids=true,
+xmajorgrids=true,
+xmin=-10,
+xmax=110,
+ymin=-10,
+ymax=110,
+xtick={0,10,...,100},
+ytick={0,10,...,100},]
+\draw [line width=1pt] (10,90)-- (15,80)-- (20,90); %-- (25,80)-- (30,90);
+\draw [line width=1pt] (35,75)-- (35,65);
+\draw [line width=1pt] (35,65)-- (45,65);
+\draw [line width=1pt] (60,40)-- (60,55)-- (70,55)-- (70.1475256539027,48)-- (60,48)-- (70,40);
+\draw [line width=1pt] (90,24)-- (90,32);
+\draw [line width=1pt] (90,32)-- (80,35);
+\draw (-10,-2) node[anchor=north west] {$\bm{orig}$};
+\draw (101,105) node[anchor=north west] {$\bm{dest}$};
+\draw [line width=1pt,color=qqqqff] (0,0)-- (41.47582282240637,18.164123618681046)-- (70.101,49.138)-- (45,65)-- (85.859,97.978)-- (100,100);
+\draw [line width=1pt] (86.82129716850366,22.634597964778333)-- (90,24);
+\draw [color=qqqqff](40.765568317840376,18.0044511943922) node[anchor=north west] {\bm{$x_L^1$}};
+\draw [color=qqqqff](72.99254218970013,53.65111554518814) node[anchor=north west] {\bm{$x_R^1=x_L^2$}};
+\draw [color=qqqqff](48.147958808310456,69.83558700506468) node[anchor=north west] {\bm{$x_R^2=x_L^3$}};
+\draw [color=qqqqff](85.91172554802277,99.21696325430658) node[anchor=north west] {\bm{$x_R^3$}};
+\draw [color=ffqqqq](87.33141602695932,22.985801200158928) node[anchor=north west] {\bm{$R^1$}};
+\draw [color=ffqqqq](72.27026362074302,35.337108366906804) node[anchor=north west] {\bm{$L^1$}};
+\draw [color=ffqqqq](70.28891361497628,60.039722700402564) node[anchor=north west] {\bm{$R^2$}};
+\draw [color=ffqqqq](61.9065231245062,40.589963138971996) node[anchor=north west] {\bm{$L^2$}};
+\draw [color=ffqqqq](38.068156407860926,64.15682508931852) node[anchor=north west] {\bm{$R^3$}};
+\draw [color=ffqqqq](35.512713545775135,81.18067750706813) node[anchor=north west] {\bm{$L^3$}};
+\draw [color=ffqqqq](16.075387313833177,97.80348944011448) node[anchor=north west] {\bm{$R^4$}};
+\draw [color=ffqqqq](28.691982582135264,97.80348944011448) node[anchor=north west] {\bm{$L^4$}};
+\draw [->,line width=1pt,dashed,color=ffqqqq] (41.47582282240637,18.164123618681046) -- (64.14855999545502,20.39936079172969);
+\draw [line width=1pt,dashed,color=ffqqqq] (41.47582282240637,18.164123618681046)-- (86.82129716850366,22.634597964778333);
+\draw [line width=1pt,color=ffqqqq] (86.82129716850366,22.634597964778333)-- (80,20);
+\draw [line width=1pt,color=ffqqqq] (80,20)-- (80.1475256539027,35);
+\draw [line width=1pt,dashed,color=ffqqqq] (80.1475256539027,35)-- (70.101,49.138);
+\draw [line width=1pt,color=ffqqqq] (70,52.597)-- (70.1475256539027,48);
+\draw [line width=1pt,color=ffqqqq] (70.1475256539027,48)-- (60,48);
+\draw [line width=1pt,color=ffqqqq] (60,48)-- (70,40);
+\draw [line width=2pt,color=zzttqq] (70,40)-- (70,40);
+\draw [line width=1pt,dashed,color=ffqqqq] (70,40)-- (45,65);
+\draw [->,line width=1pt,color=ffqqqq] (70.1475256539027,48) -- (65.07376282695135,48);
+\draw [line width=1pt,color=ffqqqq] (45,65)-- (45,75);
+\draw [line width=1pt,color=ffqqqq] (45,75)-- (35,75);
+\draw [line width=1pt,dashed,color=ffqqqq] (35,75)-- (20,90);
+\draw [line width=1pt,color=ffqqqq] (20,90)-- (25,80);
+\draw [line width=1pt,color=ffqqqq] (25,80)-- (30,90);
+\draw [line width=1pt,dashed,color=ffqqqq] (30,90)-- (85.859,97.978);
+\draw [->,line width=1pt,dashed,color=ffqqqq] (35,75) -- (27.5,82.5);
+\draw [->,line width=1pt,dashed,color=ffqqqq] (30,90) -- (57.9295,93.989);
+\draw [->,line width=1pt,dashed,color=ffqqqq] (80.1475256539027,35) -- (75.12426282695135,42.069);
+\draw [->,line width=1pt,dashed,color=ffqqqq] (70,40) -- (54.80386449364696,55.196135506353045);
+\begin{scriptsize}
+\draw [fill=black] (0,0) ++(-4.5pt,0 pt) -- ++(4.5pt,4.5pt)--++(4.5pt,-4.5pt)--++(-4.5pt,-4.5pt)--++(-4.5pt,4.5pt);
+\draw [fill=black] (100,100) ++(-4.5pt,0 pt) -- ++(4.5pt,4.5pt)--++(4.5pt,-4.5pt)--++(-4.5pt,-4.5pt)--++(-4.5pt,4.5pt);
+\draw (86.8213, 22.6346) node[cross, very thick] {};
+\draw (80.14753, 35) node[cross, very thick] {};
+\draw (70, 52.597) node[cross, very thick] {};
+\draw (70, 40) node[cross, very thick] {};
+\draw (45, 65) node[cross, very thick] {};
+\draw (35, 75) node[cross, very thick] {};
+\draw (20, 90) node[cross, very thick] {};
+\draw (30, 90) node[cross, very thick] {};
+% \draw [color=ffqqqq] (20,90)-- ++(-4.5pt,-4.5pt) -- ++(9pt,9pt) ++(-9pt,0) -- ++(9pt,-9pt);
+% \draw [color=ffqqqq] (30,90)-- ++(-4.5pt,-4.5pt) -- ++(9pt,9pt) ++(-9pt,0) -- ++(9pt,-9pt);
+% \draw [color=ffqqqq] (35,75)-- ++(-4.5pt,-4.5pt) -- ++(9pt,9pt) ++(-9pt,0) -- ++(9pt,-9pt);
+% \draw [color=ffqqqq] (45,65)-- ++(-4.5pt,-4.5pt) -- ++(9pt,9pt) ++(-9pt,0) -- ++(9pt,-9pt);
+\draw [fill=qqqqff] (41.47582282240637,18.164123618681046) circle (3pt);
+\draw [fill=qqqqff] (45,65) circle (3pt);
+\draw [fill=qqqqff] (85.859,97.978) circle (3pt);
+% \draw [color=ffqqqq] (86.82129716850366,22.634597964778333)-- ++(-4.5pt,-4.5pt) -- ++(9pt,9pt) ++(-9pt,0) -- ++(9pt,-9pt);
+% \draw [color=ffqqqq] (80.1475256539027,35)-- ++(-4.5pt,-4.5pt) -- ++(9pt,9pt) ++(-9pt,0) -- ++(9pt,-9pt);
+% \draw [color=ffqqqq] (70,52.597)-- ++(-4.5pt,-4.5pt) -- ++(9pt,9pt) ++(-9pt,0) -- ++(9pt,-9pt);
+% \draw [color=ffqqqq] (70,40)-- ++(-4.5pt,-4.5pt) -- ++(9pt,9pt) ++(-9pt,0) -- ++(9pt,-9pt);
+\draw [fill=qqqqff] (70.101,49.138) circle (3pt);
+\end{scriptsize}
+\end{axis}
+\end{tikzpicture}
+\caption{Optimal solution obtained for the data of the example}
+\label{fig:Fig2}
+\end{figure}
