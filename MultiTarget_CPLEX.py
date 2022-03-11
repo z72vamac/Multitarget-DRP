@@ -82,7 +82,7 @@ def MultiTargetPolygonal_CPLEX(datos, log):
                       self.objective_value, "%, quitting.")
                 # self.abort()
                 # self.aborted = True
-                self.abort()
+                # self.abort()
     
     def subtour(edges):
         "Genera un subtour de una lista de aristas"

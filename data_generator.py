@@ -31,7 +31,7 @@ tmax = 7200
 
 for m in ms:
     for i in range(5):
-        datos = Data([], r = 2, show = True, m = m, modo = 2, init = False, tmax = tmax, capacity = 30, seed = seed)
+        datos = Data([], r = 2, show = True, m = m, modo = 4, init = False, tmax = tmax, capacity = 30, seed = seed)
 
         datos.generar_muestra()
         instancias[(i, m, 30)] = datos
@@ -41,6 +41,6 @@ for m in ms:
             datos2.capacity = c
             instancias[(i, m, c)] = datos2
 
-with open("instancias_poligonales.pickle","wb") as pickle_out:
+with open("instancias_mixtas.pickle","wb") as pickle_out:
     pickle.dump(instancias, pickle_out)
 

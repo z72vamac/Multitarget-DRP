@@ -13,6 +13,7 @@ import numpy as np
 import entorno as e
 import matplotlib.pyplot as plt
 import random
+import math
 from copy import copy
 
 
@@ -96,6 +97,13 @@ class Data(object):
                     self.generar_punto()
                 elif flag == 2:
                     self.generar_poligonal()
+        if self.modo == 4:
+            m2 = int(math.floor(self.m/2))
+            for i in range(m2):
+                self.generar_punto()
+
+            for i in range(self.m-m2):
+                self.generar_poligonal()
 
     def vaciar_muestra(self):
         self.olddata = copy(self.data)
