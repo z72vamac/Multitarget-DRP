@@ -6,6 +6,7 @@ import openpyxl
 import matplotlib
 
 pd.set_option('display.max_rows', 500)
+init = True
 
 point_gurobi = pd.read_csv('results_point_gurobi_with_initialization.csv')
 point_gurobi = point_gurobi[['Size', 'Instance', 'Capacity', 'GAP', 'NodeCount', 'Runtime', 'ObjVal', 'HeurTime', 'HeurVal']]
@@ -19,7 +20,9 @@ polygonal_gurobi['Type'] = 'Polygonal_Gurobi'
 
 comparador = pd.concat([point_gurobi, polygonal_gurobi])
 comparador[['Size', 'Instance', 'Capacity']] = comparador[['Size', 'Instance', 'Capacity']].apply(np.int64)
-tabla_comparadora = comparador.groupby(['Type', 'Size', 'Capacity']).describe()[['GAP', 'Runtime', 'HeurTime', 'HeurVal']].round(2).reset_index()
+comparador['ObjVal'] = comparador[['HeurVal', 'ObjVal']].min(axis = 1)
+comparador['RelGap'] = (comparador['HeurVal'] - comparador['ObjVal'])/comparador['HeurVal']
+tabla_comparadora = comparador.groupby(['Type', 'Size', 'Capacity']).describe()[['GAP', 'Runtime', 'HeurTime', 'HeurVal', 'RelGap']].round(2).reset_index()
 # number_nan = comparador.groupby(['Size', 'Capacity']).isna().sum()[['GAP', 'Runtime']].round(2).reset_index()
 
 tabla_comparadora.to_excel('summary_gurobi_with_initialization.xlsx')
@@ -37,7 +40,9 @@ polygonal_cplex['Type'] = 'Polygonal_Cplex'
 
 comparador = pd.concat([point_cplex, polygonal_cplex])
 comparador[['Size', 'Instance', 'Capacity']] = comparador[['Size', 'Instance', 'Capacity']].apply(np.int64)
-tabla_comparadora = comparador.groupby(['Type', 'Size', 'Capacity']).describe()[['GAP', 'Runtime', 'HeurTime', 'HeurVal']].round(2).reset_index()
+comparador['ObjVal'] = comparador[['HeurVal', 'ObjVal']].min(axis = 1)
+comparador['RelGap'] = (comparador['HeurVal'] - comparador['ObjVal'])/comparador['HeurVal']
+tabla_comparadora = comparador.groupby(['Type', 'Size', 'Capacity']).describe()[['GAP', 'Runtime', 'HeurTime', 'HeurVal', 'RelGap']].round(2).reset_index()
 # number_nan = comparador.groupby(['Size', 'Capacity']).isna().sum()[['GAP', 'Runtime']].round(2).reset_index()
 
 tabla_comparadora.to_excel('summary_cplex_with_initialization.xlsx')
