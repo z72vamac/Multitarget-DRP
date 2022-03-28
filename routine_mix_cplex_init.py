@@ -28,7 +28,7 @@ iter = 0
 for key, it in zip(instancias.keys(), range(len(instancias.keys()))):
     instance, size, capacity = key
     datos = instancias[key]
-    if size >= 5 and size <= 15 and iter >= 119: #and iter >= 45: #and iter >= 188 + 13:
+    if size >= 5 and size <= 15: # and iter >= 119: #and iter >= 45: #and iter >= 188 + 13:
         datos.init = True
         # datos.tmax = 10
         print()
@@ -39,6 +39,6 @@ for key, it in zip(instancias.keys(), range(len(instancias.keys()))):
         solution = MultiTargetPolygonal_CPLEX(datos, 2)
         # dataframe = dataframe.append(pd.Series([instance, size, capacity, solution[0], solution[1], solution[2], solution[3], solution[4]], index=['Instance', 'Size', 'Capacity', 'GAP', 'Runtime', 'NodeCount', 'ObjVal', 'Sec']), ignore_index=True)
         dataframe = dataframe.append(pd.Series([instance, size, capacity, solution[0], solution[1], solution[2], solution[3], solution[4], solution[5]], index=['Instance', 'Size', 'Capacity', 'GAP', 'Runtime', 'NodeCount', 'ObjVal', 'HeurTime', 'HeurVal']), ignore_index=True)
-        dataframe.to_csv('result_mix_cplex_init2.csv', header = True, mode = 'w')
+        dataframe.to_csv('result_mix_cplex_init_gettingtime.csv', header = True, mode = 'w')
         # avisador(iter, 'point')
     iter += 1

@@ -80,7 +80,7 @@ def MultiTargetPolygonal_CPLEX(datos, log):
                 self.timeused = self.get_time() - self.starttime
                 print("First feasible solution at", self.timeused, "sec., objective_value =",
                       self.objective_value, "%, quitting.")
-                # self.abort()
+                self.abort()
                 # self.aborted = True
                 # self.abort()
     
